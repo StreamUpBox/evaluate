@@ -1,13 +1,48 @@
 {
-  "name": "evaluate",
-  "version": "0.0.0",
+  "name": "flipper",
+  "version": "0.4.20-alpha.29",
+  "description": "Flipper is software that uses in different business like (shop, pharmacy, etc) and developed to manage inventory, business sales, and customer needs has also a point of sales(P.O.S).",
+  "homepage": "https://flipper.yegobox.rw",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/StreamUpBox/flipper.git"
+  },
+  "author": {
+    "name": "Flipper Team",
+    "email": "flipper@yegobox.com"
+  },
+  "keywords": [
+    "POS",
+    "Pharmacy",
+    "Hospital",
+    "Management",
+    "Business"
+  ],
+  "main": "main.js",
   "scripts": {
+    "postinstall": "npm run postinstall:electron && electron-builder install-app-deps",
+    "postinstall:web": "node postinstall-web",
+    "postinstall:electron": "node postinstall",
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "start": "npm run postinstall:electron && npm-run-all -p ng:serve electron:serve",
+    "build": "npm run postinstall:electron && npm run electron:serve-tsc && ng build",
+    "build:dev": "npm run build -- -c dev ",
+    "build:prod": "npm run build -- -c production",
+    "ng:serve": "ng serve  --aot --proxy-config proxy.conf.json --host 0.0.0.0",
+    "web": "npm run postinstall:web && ng serve -o",
+    "electron:serve-tsc": "tsc -p tsconfig-serve.json",
+    "electron:serve": "wait-on http-get://localhost:4200/ && npm run electron:serve-tsc && electron . --serve",
+    "electron:local": "npm run build:prod && electron .",
+    "electron:linux": "npm run build:prod && npx electron-builder build -p  always --linux",
+    "ng:serve:web": "npm run postinstall:web && ng serve -o",
+    "electron:windows": "npm run build:prod && npx electron-builder build -p always --windows",
+    "electron:mac": "npm run build:prod && npx electron-builder build -p always  --mac",
+    "test": "npm run postinstall:web && ng test --watch",
+    "test:travis": "npm run postinstall:web && ng test  --browsers=ChromeHeadless",
+    "e2e": "npm run postinstall:web && ng e2e",
+    "release": "standard-version",
+    "mocha": "mocha",
+    "alpha": "npm run release -- --prerelease alpha"
   },
   "private": true,
   "dependencies": {
@@ -24,6 +59,7 @@
     "@angular/router": "~8.2.3",
     "@ngrx/effects": "^8.2.0",
     "@ngrx/store": "^8.2.0",
+    "@ngx-translate/http-loader": "^4.0.0",
     "@ngxs/store": "^3.5.0",
     "bootstrap": "^4.3.1",
     "custom-electron-titlebar": "^3.1.0",
@@ -42,6 +78,7 @@
     "pusher-js": "^4.4.0",
     "raven-js": "^3.27.2",
     "rxjs": "~6.4.0",
+    "rxjs-compat": "^6.5.2",
     "singleton-js": "^1.0.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
@@ -52,6 +89,7 @@
     "@angular/compiler-cli": "~8.2.3",
     "@angular/language-service": "~8.2.3",
     "@ngx-translate/core": "^10.0.1",
+    "@sentry/browser": "^4.6.6",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
@@ -69,6 +107,7 @@
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
     "npx": "^10.2.0",
+    "perfect-scrollbar": "^1.4.0",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
