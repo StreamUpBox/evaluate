@@ -38,7 +38,10 @@ const routes: Routes = [
             pathMatch: 'full',
             },
             {path: 'analytics', component: AnalyticsComponent},
-            {path: 'pos', loadChildren: '../app/pos/pos.module#PosModule', canActivate: [AuthGuard]},
+            {path: 'pos', 
+            // loadChildren: './../../app/pos/pos.module#PosModule', 
+            loadChildren: () => import('./../pos/pos.module').then(m => m.PosModule),
+            canActivate: [AuthGuard]},
               {
                 path: 'setup', children: [
                       { path: 'item', component: ItemsComponent },
@@ -58,7 +61,7 @@ const routes: Routes = [
               path: 'sales', children: [
               {
                 path: 'invoices',
-                loadChildren: '../app/invoices/invoices.module#InvoicesModule',
+                loadChildren: () => import('./../../app/invoices/invoices.module').then(m => m.InvoicesModule),
                 canActivate: [AuthGuard]
               },
               {
