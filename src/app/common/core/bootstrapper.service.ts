@@ -47,7 +47,7 @@ export class Bootstrapper {
    */
   public bootstrap(data?: string): Promise<any> {
     let url;
-    if (!data) { data = window.bootstrapData; }
+    if (!data) { data = window['bootstrapData']; }
     // if we have bootstrap data in global scope, pass
     // it to the app and return self resolving promise
     if (data) {
@@ -66,7 +66,7 @@ export class Bootstrapper {
     return new Promise((resolve, reject) => {
       this.http.get(url).subscribe(
         response => {
-          this.handleData(response.data);
+          this.handleData(response['data']);
           resolve();
         },
         error => {
@@ -95,7 +95,7 @@ export class Bootstrapper {
     }
 
     // set current user and default role for guests
-    localStorage.setItem('active_branch', '0');
+    localStorage.setItem('active_branch','0');
     this.currentUser.init({
       user_data: data.user_data,
       guestsRole: data.guests_role,

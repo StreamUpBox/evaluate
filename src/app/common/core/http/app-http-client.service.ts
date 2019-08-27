@@ -38,14 +38,14 @@ export class AppHttpClient {
       .pipe(catchError(err => this.errorHandler.handle(err, uri)));
   }
 
-  public post<T>(uri: string, params: object = null): Observable<T> | any {
+  public post<T>(uri: string, params: any = null): Observable<T> | any {
     params._token = this.settings.csrfToken;
     return this.httpClient
       .post<T>(this.prefixUri(uri), params, {headers: this.headers})
       .pipe(catchError(err => this.errorHandler.handle(err, uri)));
   }
 
-  public put<T>(uri: string, params: object = {}): Observable<T> | any {
+  public put<T>(uri: string, params: any = {}): Observable<T> | any {
     params._token = this.settings.csrfToken;
     params = this.spoofHttpMethod(params, 'PUT');
     return this.httpClient
@@ -53,7 +53,7 @@ export class AppHttpClient {
       .pipe(catchError(err => this.errorHandler.handle(err, uri)));
   }
 
-  public delete<T>(uri: string, params: object = {}): Observable<T> | any {
+  public delete<T>(uri: string, params: any = {}): Observable<T> | any {
     params._token = this.settings.csrfToken;
     params = this.spoofHttpMethod(params, 'DELETE');
     return this.httpClient
@@ -93,7 +93,7 @@ export class AppHttpClient {
    * Spoof http method by adding '_method' to request params.
    */
   private spoofHttpMethod(
-    params: object | FormData,
+    params: any | FormData,
     method: 'PUT' | 'DELETE'
   ): object | FormData {
     if (params instanceof FormData) {

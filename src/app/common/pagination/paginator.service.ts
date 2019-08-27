@@ -157,7 +157,7 @@ export class Paginator {
     /**
      * Normalize specified router params.
      */
-    protected normalizeParams(params: Object) {
+    protected normalizeParams(params: any) {
         const lastPage = Math.ceil(this.params.total / this.params.perPage);
 
         // navigate to last page is specified page is invalid

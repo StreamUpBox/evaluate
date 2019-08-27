@@ -20,7 +20,7 @@ export class DataTableSource<T> implements DataSource<T> {
     /**
      * Model that stores and controls currently selected table rows.
      */
-    public selectedRows = new SelectionModel<T>(true, []);
+    public selectedRows = new SelectionModel<any>(true, []);
 
     /**
      * Data after it has been filtered by search query.
@@ -30,7 +30,7 @@ export class DataTableSource<T> implements DataSource<T> {
     /**
      * PaginatedDataTableSource Constructor.
      */
-    constructor(protected config: DataTableSourceConfig<T>) {}
+    constructor(protected config: DataTableSourceConfig<any>) {}
 
     public init(params?: object) {
         this.setFilteredData(this.config.initialData);

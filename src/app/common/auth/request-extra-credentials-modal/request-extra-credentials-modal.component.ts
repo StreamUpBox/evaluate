@@ -60,7 +60,7 @@ export class RequestExtraCredentialsModalComponent implements OnInit {
         this.dialogRef.close();
     }
 
-    public handleErrors(response: {messages: object}) {
+    public handleErrors(response: {messages: any}) {
         // we need to request user extra credentials again, for example
         // if email address user supplied previously already exists
         // we might need to request password for account with that email
