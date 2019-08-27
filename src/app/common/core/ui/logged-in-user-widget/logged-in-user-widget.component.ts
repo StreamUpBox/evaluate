@@ -13,11 +13,11 @@ import { Bootstrapper } from '../../bootstrapper.service';
     encapsulation: ViewEncapsulation.None,
 })
 export class LoggedInUserWidgetComponent  {
-  loading:boolean=false;
+  loading = false;
   // ipcRenderer: any;
     constructor(private bootstrapper: Bootstrapper,
       // private _electronService: ElectronService,
-      private router: Router, public currentUser: CurrentUser, public auth: AuthService) {
+                private router: Router, public currentUser: CurrentUser, public auth: AuthService) {
       if (this.isElectron()) {
         // this.ipcRenderer = this._electronService.ipcRenderer;
         // this.ipcRenderer.send("version-ping", "ping");
@@ -29,20 +29,20 @@ export class LoggedInUserWidgetComponent  {
       }
     }
 
-    logOut(){
-    this.loading=true;
+    logOut() {
+    this.loading = true;
     this.auth.logOut().subscribe(
       response =>  {
-      this.loading=false;
+      this.loading = false;
       this.currentUser.clear();
-      //console.log(response.data);
+      // console.log(response.data);
       this.bootstrapper.bootstrap(response.data);
-      this.router.navigate(["/login"]);
+      this.router.navigate(['/login']);
     });
   }
   isElectron = () => {
     return window && window.process && window.process.type;
-  };
+  }
   public openAccountSettings() {
     if (this.isElectron()) {
       // this._electronService.shell.openExternal("https://yegobox.com/account/settings");

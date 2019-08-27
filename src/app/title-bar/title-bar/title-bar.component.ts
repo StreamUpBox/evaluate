@@ -11,25 +11,25 @@ export class TitleBarComponent implements OnInit {
   constructor(public localStorage: LocalStorage) { }
 
   ngOnInit() {
-   
+
   }
 
-  onWinMin(){
+  onWinMin() {
     // var window = BrowserWindow.getFocusedWindow();
-    //        return window.minimize();  
+    //        return window.minimize();
 }
-onWinMax(){
+onWinMax() {
     // var window = BrowserWindow.getFocusedWindow();
     // if(window.isMaximized()){
     //     window.unmaximize();
     // }else{
     //     window.maximize();
-    // } 
+    // }
 }
-onWinClose(){
+onWinClose() {
     // var window = BrowserWindow.getFocusedWindow();
     // window.close();
 }
- 
+
 
 }

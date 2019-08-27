@@ -20,25 +20,25 @@ export interface Customer {
   insurance_expiration_date?: string;
   organization?: string;
   cstomer_no?: string;
-  department?:string;
-  beneficiary?:string;
+  department?: string;
+  beneficiary?: string;
   customer_insurance_number?: string;
   create_by?: string;
   misc?: string;
-  customer_type?:CustomerType;
-  customer_no?:string;
-  title?:string;
-  gender?:string;
-  status?:string;
-  company?:string;
-  state?:string;
-  street_address_2?:string;
-  street_address_3?:string;
-  zip_code?:string;
-  business_id?:number;
-  branch_id?:number;
-  customer_type_id?:number;
-  dob?:Date;
+  customer_type?: CustomerType;
+  customer_no?: string;
+  title?: string;
+  gender?: string;
+  status?: string;
+  company?: string;
+  state?: string;
+  street_address_2?: string;
+  street_address_3?: string;
+  zip_code?: string;
+  business_id?: number;
+  branch_id?: number;
+  customer_type_id?: number;
+  dob?: Date;
   customer_created?: {
     cstomer_no: string;
     full_name: string;
@@ -47,5 +47,5 @@ export interface Customer {
     updated_at: string;
     created_at: string;
     id: number;
-  } // to be used in case you want to add anything
+  }; // to be used in case you want to add anything
 }

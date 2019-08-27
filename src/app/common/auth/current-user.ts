@@ -1,5 +1,5 @@
-import { EventEmitter, Injectable } from "@angular/core";
-import { User, UserData } from "../core/types/models/User";
+import { EventEmitter, Injectable } from '@angular/core';
+import { User, UserData } from '../core/types/models/User';
 import { Branch } from '../../admin/master/branch/api/branch';
 import { Role } from '../core/types/models/Role';
 import { Business } from '../../business/api/business';
@@ -7,21 +7,28 @@ import { LocalStorage } from '../core/services/local-storage.service';
 import { NavItem } from '../../nav-menu-bar/nav-item';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class CurrentUser {
+
+   set hasBusiness(value: boolean) {
+      this.has_business_belongs = value;
+  }
+   get hasBusiness(): boolean {
+    return this.has_business_belongs;
+  }
   /**
    * Current user model.
    */
   private current: User;
 
   private currentBranch: Branch;
-  private currentBusiness:Business;
-  private currentReceipt:any;
+  private currentBusiness: Business;
+  private currentReceipt: any;
   private userRole: Role;
-  private allRoles:Role[];
-  private allMenus:NavItem[];
-  private currentPermissions:any;
+  private allRoles: Role[];
+  private allMenus: NavItem[];
+  private currentPermissions: any;
 
   /**
    * Role that should be assigned to guests.
@@ -48,21 +55,21 @@ export class CurrentUser {
   public currentRolesChanged: EventEmitter<Role[]> = new EventEmitter();
   public currentMenusChanged: EventEmitter<NavItem[]> = new EventEmitter();
   public currentReceiptChanged: EventEmitter<any> = new EventEmitter();
-  public userSetting() {
-    return this.current.settings;
-  }
   /**
    * Get property of currently logged in user model.
    */
   user: User;
-  branch:Branch;
-  user_role:Role[];
-  business:Business;
-  receipt:any;
-  roles:Role[];
-  menus:NavItem[];
-  permissions:any;
-  has_business_belongs:boolean;
+  branch: Branch;
+  user_role: Role[];
+  business: Business;
+  receipt: any;
+  roles: Role[];
+  menus: NavItem[];
+  permissions: any;
+  has_business_belongs: boolean;
+  public userSetting() {
+    return this.current.settings;
+  }
   public get<K extends keyof User>(prop: K): User[K] {
     this.user = this.current && this.current[prop];
     return this.user;
@@ -92,17 +99,10 @@ export class CurrentUser {
     this.userRole[key] = value;
   }
 
-   set hasBusiness(value:boolean){
-      this.has_business_belongs=value;
-  }
-   get hasBusiness():boolean{
-    return this.has_business_belongs;
-  }
-
 
   public getRole<K extends keyof Role>(prop: K): Role[K] {
     return this.userRole && this.userRole[prop];
-    //return this.user_role;
+    // return this.user_role;
   }
 
   public getBusiness<K extends keyof Business>(prop: K): Business[K] {
@@ -130,7 +130,7 @@ export class CurrentUser {
   public getMenus(): Array<NavItem> {
     return this.allMenus;
   }
-//currentPermissions
+// currentPermissions
 
 public getPermissions<K extends keyof any>(prop: K): any[K] {
   this.permissions = this.currentPermissions && this.currentPermissions[prop];
@@ -148,22 +148,22 @@ public setPermissions(key: string, value: any): void {
 
     if (model) {
       this.current = model.user_logged_in;
-      this.currentBranch=model.switched_branch;
-      this.userRole=model.user_logged_role;
-      this.currentBusiness=model.business;
-      this.allRoles=model.roles;
-      this.allMenus=model.menus;
-      this.currentPermissions=model.permissions;
-      this.hasBusiness=model.has_business_belongs;
-      if(model.business){
-        this.currentReceipt=model.business.receipt;
+      this.currentBranch = model.switched_branch;
+      this.userRole = model.user_logged_role;
+      this.currentBusiness = model.business;
+      this.allRoles = model.roles;
+      this.allMenus = model.menus;
+      this.currentPermissions = model.permissions;
+      this.hasBusiness = model.has_business_belongs;
+      if (model.business) {
+        this.currentReceipt = model.business.receipt;
       }
-    
 
-      if(model.switched_branch){
-        const active_branch=model.switched_branch;
-        const b_id:number=active_branch.id;
-        localStorage.setItem('active_branch',b_id.toString());
+
+      if (model.switched_branch) {
+        const active_branch = model.switched_branch;
+        const b_id: number = active_branch.id;
+        localStorage.setItem('active_branch', b_id.toString());
       }
 
     }
@@ -194,7 +194,7 @@ public setPermissions(key: string, value: any): void {
    * Check if user has given permission.
    */
   public hasPermission(permission: string): boolean {
-     return this.getRole('name')==permission;
+     return this.getRole('name') == permission;
   }
 
   public hasRole(role: string): boolean {
@@ -207,12 +207,12 @@ public setPermissions(key: string, value: any): void {
    * Check if current user is logged in.
    */
   public isLoggedIn(): boolean {
-    
-    return this.get("id") > 0;
+
+    return this.get('id') > 0;
   }
   public hasCurrentBranch(): boolean {
 
-        return this.getCurrentBranch("id") > 0;
+        return this.getCurrentBranch('id') > 0;
   }
   /**
    * Check if user subscription is active, on trial, or on grace period.
@@ -229,13 +229,13 @@ public setPermissions(key: string, value: any): void {
    * Check if current user is an admin.
    */
   public isAdmin(): boolean {
-    return this.hasPermission("admin");
+    return this.hasPermission('admin');
   }
   public isManager(): boolean {
-    return this.hasPermission("manager");
+    return this.hasPermission('manager');
   }
   public isCashier(): boolean {
-    return this.hasPermission("cashier");
+    return this.hasPermission('cashier');
   }
   /**
    * Clear current user information.
@@ -243,13 +243,13 @@ public setPermissions(key: string, value: any): void {
   public clear() {
     this.current = null;
     this.cachedPermissions = null;
-    this.currentBranch=null;
-    this.userRole=null;
-    this.currentBusiness=null;
-    this.allRoles=[];
-    this.allMenus=[];
-    this.currentPermissions=null;
-    this.currentReceipt=null;
+    this.currentBranch = null;
+    this.userRole = null;
+    this.currentBusiness = null;
+    this.allRoles = [];
+    this.allMenus = [];
+    this.currentPermissions = null;
+    this.currentReceipt = null;
     this.userChanged.emit(this.current);
     this.currentBranchChanged.emit(this.currentBranch);
     this.currentBusinessChanged.emit(this.currentBusiness);
@@ -277,10 +277,10 @@ public setPermissions(key: string, value: any): void {
     }
 
     // permissions on user modal
-    const permissions = this.get("permissions") || {};
+    const permissions = this.get('permissions') || {};
 
     // merge role permissions
-    const roles = this.get("roles") || [];
+    const roles = this.get('roles') || [];
     // roles.forEach((role: Role) => {
     //     if (role) Object.assign(permissions, role.permissions);
     // });

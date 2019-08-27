@@ -30,7 +30,7 @@ export class ApiItemService {
       return this.http.delete(API_ROUTES_ITEMS.DELETE_MULTIPLE, {ids});
     }
     public filterItem(params): BackendResponse<any> {
-        return this.http.get("filter-item", params);
+        return this.http.get('filter-item', params);
     }
-   
+
 }

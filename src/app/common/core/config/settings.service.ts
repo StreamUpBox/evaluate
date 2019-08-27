@@ -48,9 +48,9 @@ export class Settings {
     public merge(config: object) {
         this.all = merge(this.all, config);
     }
-    public getAssetJson(filename) :Observable<any>{
+    public getAssetJson(filename): Observable<any> {
 
-      return this.http.get('assets/lists/'+filename+'.json');
+      return this.http.get('assets/lists/' + filename + '.json');
   }
   httpGet(theUrl) {
     const xmlHttp = new XMLHttpRequest();
@@ -62,8 +62,8 @@ export class Settings {
      * Set single setting.
      */
     public set(name: keyof FlipperConfig|any, value: FlipperConfig[keyof FlipperConfig]|any, fireEvent = false) {
-        Dot['set'](name, value, this.all);
-        if (fireEvent) this.onChange.emit(name);
+        Dot.set(name, value, this.all);
+        if (fireEvent) { this.onChange.emit(name); }
     }
 
     /**
@@ -98,7 +98,7 @@ export class Settings {
      */
     public getJson(name: keyof FlipperConfig, defaultValue: any = null) {
         const value = this.get(name, defaultValue);
-        if (typeof value !== 'string') return value;
+        if (typeof value !== 'string') { return value; }
         return JSON.parse(value);
     }
 
@@ -112,7 +112,7 @@ export class Settings {
         if (this.has('base_url') && (this.get('vebto.environment') === 'production' || forceServerUrl)) {
             return this.get('base_url') + '/';
         } else if (document.querySelector('base')) {
-            return document.querySelector('base')['href'];
+            return document.querySelector('base').href;
         } else {
             const loc = window.location;
             return (loc.protocol + '//' + (loc.host + '/' + loc.pathname).replace('//', '/'))
@@ -134,7 +134,7 @@ export class Settings {
 
         uri += 'assets/';
 
-        if (suffix) uri += suffix;
+        if (suffix) { uri += suffix; }
 
         return uri;
     }

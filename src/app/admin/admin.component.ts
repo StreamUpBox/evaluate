@@ -10,18 +10,18 @@ import { CurrentUser } from '../common/auth/current-user';
 })
 export class AdminComponent implements OnInit, AfterViewInit {
 
-    isOpened:boolean=true;
-    @ViewChild('appDrawer',{static:true}) appDrawer: ElementRef;
-    navItems: NavItem[] =[];
-    constructor(public navService: NavService,private currentUser:CurrentUser) {}
+    isOpened = true;
+    @ViewChild('appDrawer', {static: true}) appDrawer: ElementRef;
+    navItems: NavItem[] = [];
+    constructor(public navService: NavService, private currentUser: CurrentUser) {}
 
   ngAfterViewInit() {
     this.navService.appDrawer = this.appDrawer;
   }
   ngOnInit() {
-    this.navItems=this.currentUser.getMenus();
+    this.navItems = this.currentUser.getMenus();
   }
 
 
- 
+
 }

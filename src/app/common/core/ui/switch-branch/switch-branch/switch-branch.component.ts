@@ -15,24 +15,24 @@ import { Branch } from '../../../../../admin/master/branch/api/branch';
 })
 export class SwitchBranchComponent implements OnInit {
   public loading = new BehaviorSubject(false);
-  constructor(private toast: Toast,private router: Router,private bootstrapper: Bootstrapper,public current: CurrentUser,private api:ApiBranchService) { }
+  constructor(private toast: Toast, private router: Router, private bootstrapper: Bootstrapper, public current: CurrentUser, private api: ApiBranchService) { }
 
   ngOnInit() {
   }
-  maySwitchBranch(branch:Branch){
-    if (!branch) return;
-  const branchForm={
-    old_switch_branch_id:this.current.getCurrentBranch('id')?this.current.getCurrentBranch('id'):branch.id,
-    new_switch_branch_id:branch.id
+  maySwitchBranch(branch: Branch) {
+    if (!branch) { return; }
+    const branchForm = {
+    old_switch_branch_id: this.current.getCurrentBranch('id') ? this.current.getCurrentBranch('id') : branch.id,
+    new_switch_branch_id: branch.id
   };
-  
-this.loading.next(true);
+
+    this.loading.next(true);
     this.api.switchBranch(branchForm).pipe(finalize(() => this.loading.next(false)))
         .subscribe(response => {
           this.bootstrapper.bootstrap(response.data);
-          this.router.navigate([""]).then(navigated => {
+          this.router.navigate(['']).then(navigated => {
             if (!navigated) {
-              this.router.navigate([""]);
+              this.router.navigate(['']);
             }
           });
         }, error => {
@@ -42,7 +42,7 @@ this.loading.next(true);
   public handleErrors(response: {messages: object} = {messages: {}}) {
     console.log(response.messages || {});
 }
-isSwitchedMessage(){
+isSwitchedMessage() {
   this.toast.open('The branch is already switched!');
 }
 }

@@ -20,17 +20,17 @@ export class SwitchBranchModelComponent implements OnInit {
 
   ngOnInit() {
   }
-  close(){
-   // return this.dialogRef.close('closed'); 
+  close() {
+   // return this.dialogRef.close('closed');
   }
-  logOut(){
+  logOut() {
     this.loading.next(true);
     this.auth.logOut().pipe(finalize(() => this.loading.next(false)))
             .subscribe(() => {
              // this.dialogRef.close('closed');
               this.current.clear();
-       this.router.navigate(["/login"]);
-      // this.dialogRef.close('closed'); 
+              this.router.navigate(['/login']);
+      // this.dialogRef.close('closed');
             }, error => {
               console.log(error);
             });

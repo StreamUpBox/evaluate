@@ -77,15 +77,15 @@ export class SocialAuthService {
      * Handle social login callback, based on returned status.
      */
     public socialLoginCallback(status: string, data = null) {
-        if (!status) return;
+        if (!status) { return; }
 
         switch (status.toUpperCase()) {
             case 'SUCCESS':
-                this.currentUser.assignCurrent(data['user']);
+                this.currentUser.assignCurrent(data.user);
                 this.router.navigate([this.auth.getRedirectUri()]);
                 break;
             case 'SUCCESS_CONNECTED':
-                if (this.resolve) this.resolve(data.user);
+                if (this.resolve) { this.resolve(data.user); }
                 break;
             case 'ALREADY_LOGGED_IN':
                 this.router.navigate([this.auth.getRedirectUri()]);
@@ -105,7 +105,7 @@ export class SocialAuthService {
     public showRequestExtraCredentialsModal(config: Object) {
         this.extraCredentialsModal = this.modal.open(RequestExtraCredentialsModalComponent, config);
         this.extraCredentialsModal.afterClosed().subscribe(credentials => {
-            if (!credentials) return;
+            if (!credentials) { return; }
             this.sendExtraCredentialsToBackend(credentials);
         });
     }
@@ -115,7 +115,7 @@ export class SocialAuthService {
      */
     public sendExtraCredentialsToBackend(data: Object) {
         this.httpClient.post('auth/social/extra-credentials', data).subscribe(response => {
-            this.currentUser.assignCurrent(response['data']);
+            this.currentUser.assignCurrent(response.data);
             this.router.navigate([this.auth.getRedirectUri()]);
             this.extraCredentialsModal.close();
         }, this.extraCredentialsModal.componentInstance.handleErrors.bind(this.extraCredentialsModal.componentInstance));
@@ -146,8 +146,8 @@ export class SocialAuthService {
      */
     private listenForMessageFromPopup() {
         window.addEventListener('message', e => {
-            if (this.settings.getBaseUrl().indexOf(e.origin) === -1) return;
-            this.socialLoginCallback(e.data.status, e.data['callbackData']);
+            if (this.settings.getBaseUrl().indexOf(e.origin) === -1) { return; }
+            this.socialLoginCallback(e.data.status, e.data.callbackData);
         }, false);
     }
 }

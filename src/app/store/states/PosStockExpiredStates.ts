@@ -1,21 +1,21 @@
  import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 
-import { tap } from 'rxjs/internal/operators/tap';
-import { StockApiIndexParams } from '../model/pos-stock-state-model';
-import { PosStockExpiredState } from '../model/pos-stock-expired-state-model';
-import { PosStockStates } from './PosStockStates';
-import { POS_STOCK_EXPIRED_STATE_MODEL_DEFAULTS } from '../model/pos-stock-expired-state';
-import { LoadStockExpiredEntries, LoadMoreStockExpiredEntries, LoadStockEntriesAction } from '../actions/pos-Stock-Expired.action';
-import { ApiExpiredItemService } from '../../stock/expired-stock/api/api.service';
-import { StockExpired } from '../../stock/expired-stock/api/expired-stock';
+ import { tap } from 'rxjs/internal/operators/tap';
+ import { StockApiIndexParams } from '../model/pos-stock-state-model';
+ import { PosStockExpiredState } from '../model/pos-stock-expired-state-model';
+ import { PosStockStates } from './PosStockStates';
+ import { POS_STOCK_EXPIRED_STATE_MODEL_DEFAULTS } from '../model/pos-stock-expired-state';
+ import { LoadStockExpiredEntries, LoadMoreStockExpiredEntries, LoadStockEntriesAction } from '../actions/pos-Stock-Expired.action';
+ import { ApiExpiredItemService } from '../../stock/expired-stock/api/api.service';
+ import { StockExpired } from '../../stock/expired-stock/api/expired-stock';
 
-@State<PosStockExpiredState>({
+ @State<PosStockExpiredState>({
   name: 'STOCKEXPIRED',
   defaults: POS_STOCK_EXPIRED_STATE_MODEL_DEFAULTS,
 })
 
 export class PosStockExpiredStates {
-  constructor(private api: ApiExpiredItemService,private store:Store) { }
+  constructor(private api: ApiExpiredItemService, private store: Store) { }
   @Selector()
   static entries(state: PosStockExpiredState) {
     return state.data;
@@ -67,10 +67,12 @@ export class PosStockExpiredStates {
       order_dir: meta.sort_direction,
       ...params
     };
-    if (meta.query)
+    if (meta.query) {
       queryParams.query = meta.query;
-    if (meta.type)
+    }
+    if (meta.type) {
       queryParams.type = meta.type;
+    }
     return queryParams;
   }
 
@@ -95,13 +97,13 @@ export class PosStockExpiredStates {
           ...newState.meta,
           last_page: response.last_page,
           current_page: response.current_page,
-          from:response.from,
-          to:response.to,
+          from: response.from,
+          to: response.to,
           total: response.total,
           per_page: response.per_page,
           path: response.path,
           next_page_url: response.next_page_url,
-          prev_page_url:response.prev_page_url
+          prev_page_url: response.prev_page_url
         },
         loading: false
       } as Partial<PosStockExpiredState>;
@@ -111,13 +113,13 @@ export class PosStockExpiredStates {
       return ctx.patchState({ loading: false });
     }));
   }
-  removeDups(data: StockExpired[]=[]) {
-    let obj = {};
+  removeDups(data: StockExpired[]= []) {
+    const obj = {};
     data = Object.keys(data.reduce((prev, next) => {
-      if (!obj[next.id]) obj[next.id] = next;
+      if (!obj[next.id]) { obj[next.id] = next; }
       return obj;
     }, obj)).map((i) => obj[i]);
     return data.reverse();
-  };
+  }
 
  }

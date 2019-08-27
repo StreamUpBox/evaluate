@@ -1,14 +1,14 @@
-import { Injectable, Injector } from "@angular/core";
-import { Settings } from "./config/settings.service";
-import { Translations } from "./translations/translations.service";
-import { APP_CONFIG, FlipperConfig } from "./config/flipper-config";
-import { Role } from "./types/models/Role";
-import { User, UserData } from "./types/models/User";
-import { LocalizationWithLines } from "./types/localization-with-lines";
-import { CurrentUser } from "../auth/current-user";
-import { HttpClient } from "@angular/common/http";
-import { AppConfig } from "../../../environments/environment";
-import { URL } from "./utils/URL";
+import { Injectable, Injector } from '@angular/core';
+import { Settings } from './config/settings.service';
+import { Translations } from './translations/translations.service';
+import { APP_CONFIG, FlipperConfig } from './config/flipper-config';
+import { Role } from './types/models/Role';
+import { User, UserData } from './types/models/User';
+import { LocalizationWithLines } from './types/localization-with-lines';
+import { CurrentUser } from '../auth/current-user';
+import { HttpClient } from '@angular/common/http';
+import { AppConfig } from '../../../environments/environment';
+import { URL } from './utils/URL';
 import { Router } from '@angular/router';
 export function init_app(bootstrapper: Bootstrapper) {
   return () => bootstrapper.bootstrap();
@@ -29,7 +29,7 @@ export class Bootstrapper {
   protected currentUser: CurrentUser;
   protected i18n: Translations;
   public data: BootstrapData;
-  
+
   constructor(protected injector: Injector, protected URL: URL) {
     this.http = this.injector.get(HttpClient);
     this.settings = this.injector.get(Settings);
@@ -47,7 +47,7 @@ export class Bootstrapper {
    */
   public bootstrap(data?: string): Promise<any> {
     let url;
-    if (!data) data = window["bootstrapData"];
+    if (!data) { data = window.bootstrapData; }
     // if we have bootstrap data in global scope, pass
     // it to the app and return self resolving promise
     if (data) {
@@ -55,18 +55,18 @@ export class Bootstrapper {
       return new Promise(resolve => resolve());
     }
     // this.URL.defineAppUrl();
-  
-    if (this.settings.getBaseUrl() != "http://localhost:4200/") {
-      url = AppConfig.url + "secure/bootstrap-data";
+
+    if (this.settings.getBaseUrl() != 'http://localhost:4200/') {
+      url = AppConfig.url + 'secure/bootstrap-data';
     } else {
-      url = this.settings.getBaseUrl() + "secure/bootstrap-data";
+      url = this.settings.getBaseUrl() + 'secure/bootstrap-data';
     }
 
     // resolves once request is complete and data is passed to the app
     return new Promise((resolve, reject) => {
       this.http.get(url).subscribe(
         response => {
-          this.handleData(response["data"]);
+          this.handleData(response.data);
           resolve();
         },
         error => {
@@ -95,7 +95,7 @@ export class Bootstrapper {
     }
 
     // set current user and default role for guests
-    localStorage.setItem('active_branch','0');
+    localStorage.setItem('active_branch', '0');
     this.currentUser.init({
       user_data: data.user_data,
       guestsRole: data.guests_role,
@@ -109,5 +109,5 @@ export class Bootstrapper {
     return data;
   }
 
-  
+
 }

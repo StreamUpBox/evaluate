@@ -6,7 +6,7 @@ import {DataTableSourceConfig} from './data-table-source-config';
 
 export class DataTableSource<T> implements DataSource<T> {
 
-    
+
     /**
      * Data for admin table to render.
      */
@@ -39,7 +39,7 @@ export class DataTableSource<T> implements DataSource<T> {
             .pipe(distinctUntilChanged())
             .subscribe(query => {
                 this.setFilteredData(this.config.initialData.filter(item => {
-                    return item['name'].toLowerCase().indexOf(query.toLowerCase()) > -1;
+                    return item.name.toLowerCase().indexOf(query.toLowerCase()) > -1;
                 }));
             });
 
@@ -51,10 +51,12 @@ export class DataTableSource<T> implements DataSource<T> {
                 }
 
                 const sortedData = this.filteredData.slice().sort((a, b) => {
-                    if (a[sort.active] < b[sort.active])
+                    if (a[sort.active] < b[sort.active]) {
                         return -1;
-                    if (a[sort.active] > b[sort.active])
+                    }
+                    if (a[sort.active] > b[sort.active]) {
                         return 1;
+                    }
                     return 0;
                 });
 
@@ -84,7 +86,7 @@ export class DataTableSource<T> implements DataSource<T> {
     }
 
     public resetSort() {
-        if ( ! this.config.matSort) return;
+        if ( ! this.config.matSort) { return; }
         this.config.matSort.sort({id: '', start: 'asc', disableClear: false});
     }
 
@@ -139,7 +141,7 @@ export class DataTableSource<T> implements DataSource<T> {
      * Get IDs of all items selected inside data source.
      */
     public getSelectedItems(): number[] {
-        return this.selectedRows.selected.map(item => item['id']);
+        return this.selectedRows.selected.map(item => item.id);
     }
 
     public setSelectedItems(items: T[]) {
@@ -148,7 +150,7 @@ export class DataTableSource<T> implements DataSource<T> {
     }
 
     public itemIsSelected(id: number) {
-        return this.selectedRows.selected.findIndex(item => item['id'] === id) > -1;
+        return this.selectedRows.selected.findIndex(item => item.id === id) > -1;
     }
 
     /**

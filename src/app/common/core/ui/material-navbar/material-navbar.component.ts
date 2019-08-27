@@ -14,26 +14,26 @@ export class MaterialNavbar implements OnInit {
     @Input() showToggleButton = false;
     @Input() container = false;
     @Input() showAuthButtons = false;
-    @Input() position :string='sidebar';
+    @Input() position = 'sidebar';
     @Output() toggleButtonClick = new EventEmitter();
-    version:string;
+    version: string;
     constructor(
         public config: Settings,
         public current: CurrentUser,
         private router: Router,
     ) {
-   
-    }
-    
-  ngOnInit() {
-    if(this.current.isAdmin() || this.current.isManager()){
-      this.showToggleButton=true;
-    }
- 
-}  
 
-gotoDashBoard(){
-  return this.router.navigate(["/admin/analytics"]);
+    }
+
+  ngOnInit() {
+    if (this.current.isAdmin() || this.current.isManager()) {
+      this.showToggleButton = true;
+    }
+
+}
+
+gotoDashBoard() {
+  return this.router.navigate(['/admin/analytics']);
 }
 
 }

@@ -1,5 +1,6 @@
 {
   "extends": "tslint:recommended",
+  "no-lazy-module-paths": [true],
   "rules": {
     "array-type": false,
     "arrow-parens": false,
