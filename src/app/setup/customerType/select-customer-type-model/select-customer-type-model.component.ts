@@ -11,14 +11,14 @@ export interface enableSelectButtonModalData {
 })
 export class SelectCustomerTypeModelComponent implements OnInit {
 
-  enableSelectButton: boolean=true;
-  selectedId: number=0;
+  enableSelectButton = true;
+  selectedId = 0;
   constructor(  private dialogRef: MatDialogRef<SelectCustomerTypeModelComponent>,
                 @Inject(MAT_DIALOG_DATA) public data: enableSelectButtonModalData) { }
 
   ngOnInit() {
-    this.enableSelectButton=this.data.enabled;
-    this.selectedId=this.data.customer_type_id;
+    this.enableSelectButton = this.data.enabled;
+    this.selectedId = this.data.customer_type_id;
   }
     public close(data?: any) {
       this.dialogRef.close(data);

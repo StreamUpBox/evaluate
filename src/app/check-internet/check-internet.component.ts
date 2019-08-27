@@ -46,7 +46,7 @@ export class CheckInternetComponent implements OnInit {
   }
 
   isInternetConnection() {
-    let isOnLine = navigator.onLine;
+    const isOnLine = navigator.onLine;
     if (isOnLine) {
         return true;
      } else {

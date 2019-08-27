@@ -455,7 +455,7 @@ export class GlobalVariables {
 
 
     isInternetConnection() {
-      let isOnLine = window.navigator.onLine;
+      const isOnLine = window.navigator.onLine;
       if (isOnLine) {
           return true;
        } else {

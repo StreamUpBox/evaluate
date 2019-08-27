@@ -72,7 +72,7 @@ export class PaginatedDataTableSource<T> extends DataTableSource<T> {
         this.searchQuery.valueChanges.pipe(
             debounceTime(400),
             distinctUntilChanged(),
-            map(query =>({query})),
+            map(query => ({query})),
         ).pipe(
             combineLatest(
                 this.params,
