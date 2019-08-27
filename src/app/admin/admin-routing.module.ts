@@ -66,7 +66,7 @@ const routes: Routes = [
               },
               {
                 path: 'customers',
-                loadChildren: '../app/customers/customers.module#CustomersModule',
+                loadChildren: () => import('./../../app/customers/customers.module').then(m => m.CustomersModule),
                 canActivate: [AuthGuard]
               }],
               }
