@@ -46,16 +46,15 @@ export class Bootstrapper {
    * Bootstrap application with data returned from server.
    */
   public bootstrap(data?: string): Promise<any> {
+    //TODO: offline should start by allowing app to fallback on offline when can not reacth to login for bootstrapper.
     let url;
     if (!data) { data = window['bootstrapData']; }
-    // if we have bootstrap data in global scope, pass
-    // it to the app and return self resolving promise
+  
     if (data) {
       this.handleData(data);
       return new Promise(resolve => resolve());
     }
-    // this.URL.defineAppUrl();
-
+  
     if (this.settings.getBaseUrl() != 'http://localhost:4200/') {
       url = AppConfig.url + 'secure/bootstrap-data';
     } else {
