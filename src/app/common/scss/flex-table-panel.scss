@@ -7,6 +7,7 @@
   // border-radius: 3px;
 
   .admin-table-panel-header {
+    border-bottom:1px solid  $site-border-color-200;
     > .header-inner {
       display: flex;
       align-items: center;

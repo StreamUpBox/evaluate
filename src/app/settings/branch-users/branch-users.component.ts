@@ -24,7 +24,7 @@ export interface BranchModalData {
   encapsulation: ViewEncapsulation.None,
 })
 export class BranchUsersComponent implements OnInit,OnDestroy {
-  @ViewChild(MatSort,{static:true}) matSort: MatSort;
+  @ViewChild(MatSort) matSort: MatSort;
   public dataSource: PaginatedDataTableSource<User>;
   public loading = new BehaviorSubject(false);
   public userForm: FormGroup;

@@ -18,7 +18,7 @@ export interface CrupdatBranchModalData {
   encapsulation: ViewEncapsulation.None,
 })
 export class AssignStockToBranchComponent implements OnInit,OnDestroy {
-  @ViewChild(MatSort,{static:true}) matSort: MatSort;
+  @ViewChild(MatSort) matSort: MatSort;
   @Input() public enableSelectButton:boolean=false;
   @Input() public selectedId:number=0;
 

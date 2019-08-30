@@ -26,18 +26,18 @@ export class ApiBranchService {
   public attachUserBranch(params: any): Observable<any> {
     return this.http.post(API_ROUTES_BRANCH.ATTACH_USER_BRANCH, params);
 }
- public update(id: number, params: Branch): Observable<any> {
-  return this.http.put(API_ROUTES_BRANCH.BRANCH + '/' + id, params);
+ public update(id:number,params: Branch): Observable<any> {
+  return this.http.put(API_ROUTES_BRANCH.BRANCH+'/'+id, params);
 }
- public delete(id: number): BackendResponse<{ data: Branch }> {
-  return this.http.delete(API_ROUTES_BRANCH.BRANCH + '/' + id);
+ public delete(id:number): BackendResponse<{ data: Branch }> {
+  return this.http.delete(API_ROUTES_BRANCH.BRANCH+'/'+id);
 }
 
 public deleteMultiple(ids: number[]) {
   return this.http.delete(API_ROUTES_BRANCH.DELETE_MULTIPLE, {ids});
 }
-// detachMultipleUsers
-public detachMultipleUsers(users= []) {
+//detachMultipleUsers
+public detachMultipleUsers(users=[]) {
   return this.http.delete(API_ROUTES_BRANCH.DETACH_USER_BRANCH, {users});
 }
 public switchBranch(params: any): Observable<any> {

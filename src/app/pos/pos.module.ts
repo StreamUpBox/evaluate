@@ -1,5 +1,5 @@
 import {
-  NgModule, CUSTOM_ELEMENTS_SCHEMA,
+  NgModule,
 } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { SalePointComponent } from "./sale-point/sale-point.component";
@@ -69,8 +69,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     PosInfiniteScrollDirective
   ],
   entryComponents: [CartDialog,BottomSheetOverviewStock],
-  providers: [ApiPosService],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  providers: [ApiPosService]
 })
 export class PosModule {
   constructor(public g: GlobalVariables) {

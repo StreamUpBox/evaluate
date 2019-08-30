@@ -1,4 +1,4 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChipInputComponent } from './chip-input.component';
 import { MatChipsModule, MatIconModule } from '@angular/material';
@@ -16,8 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ],
     exports: [
         ChipInputComponent
-    ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    ]
 })
 export class ChipInputModule {
 }

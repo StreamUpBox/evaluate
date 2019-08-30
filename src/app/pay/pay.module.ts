@@ -1,4 +1,4 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material/material.module';
 import { PayComponent } from './pay/pay.component';
@@ -21,7 +21,6 @@ import { PipeModuleModule } from '../../pipe-module/pipe-module.module';
     PipeModuleModule,
     NgxsModule.forFeature([PosOrderState]),
   ],
-  bootstrap: [PayComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  bootstrap: [PayComponent]
 })
 export class  PayModule { }

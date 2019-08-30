@@ -1,25 +1,25 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { MatDialog } from '@angular/material';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { MatDialog } from "@angular/material";
+import { Router, ActivatedRoute } from "@angular/router";
 import {
   FormBuilder,
   Validators,
   FormGroup,
   FormControl
-} from '@angular/forms';
+} from "@angular/forms";
 
-import { AuthService } from '../../auth.service';
-import { SocialAuthService } from '../../social-auth.service';
-import { Bootstrapper } from '../../../core/bootstrapper.service';
-import { Settings } from '../../../core/config/settings.service';
+import { AuthService } from "../../auth.service";
+import { SocialAuthService } from "../../social-auth.service";
+import { Bootstrapper } from "../../../core/bootstrapper.service";
+import { Settings } from "../../../core/config/settings.service";
 
-import { GlobalVariables } from '../../global-variables';
-// import { ElectronService } from 'ngx-electron';
+import { GlobalVariables } from "../../global-variables";
+import { ElectronService } from 'ngx-electron';
 
 @Component({
-  selector: 'app-password-verify',
-  templateUrl: './password-verify.component.html',
-  styleUrls: ['./password-verify.component.scss']
+  selector: "app-password-verify",
+  templateUrl: "./password-verify.component.html",
+  styleUrls: ["./password-verify.component.scss"]
 })
 export class PasswordVerifyComponent implements OnInit {
   @Input()
@@ -36,7 +36,7 @@ export class PasswordVerifyComponent implements OnInit {
   valueChange = new EventEmitter<any>();
   form: FormGroup;
   password_hide = true;
-  // ipcRenderer: any;
+  ipcRenderer: any;
   constructor(
     public socialAuth: SocialAuthService,
     public settings: Settings,
@@ -45,28 +45,28 @@ export class PasswordVerifyComponent implements OnInit {
     public dialog: MatDialog,
     private router: Router,
     private auth: AuthService,
-    // private _electronService: ElectronService
+    private _electronService: ElectronService
   ) {
     this.v.loading = false;
     if (this.isElectron()) {
-      // this.ipcRenderer = this._electronService.ipcRenderer;
-      // this.ipcRenderer.send("version-ping", "ping");
-      // this.ipcRenderer.on("version-pong", (event, version) => {
-      //   this.v.webTitle("Sign in" + "- version:" + version);
-      // });
+      this.ipcRenderer = this._electronService.ipcRenderer;
+      this.ipcRenderer.send("version-ping", "ping");
+      this.ipcRenderer.on("version-pong", (event, version) => {
+        this.v.webTitle("Sign in" + "- version:" + version);
+      });
     } else {
-      // this.v.webTitle("Sign in");
+      this.v.webTitle("Sign in");
     }
 
   }
 
   ngOnInit() {
     this.form = new FormGroup({
-      password: new FormControl('', [Validators.required])
+      password: new FormControl("", [Validators.required])
     });
   }
   get password() {
-    return this.form.get('password');
+    return this.form.get("password");
   }
   resetPassword() {
     this.v.response = {
@@ -90,36 +90,36 @@ export class PasswordVerifyComponent implements OnInit {
     this.auth.login(this.v.model).subscribe(
       response => {
         this.v.loading = false;
-        if (response == 422 || response == '422') {
-          this.v.errorMsg = 'These credentials do not match our records. ';
+        if(response == 422 || response == '422'){
+          this.v.errorMsg="These credentials do not match our records. ";
 
         }
-        if (response == 403 || response == '403') {
-          this.v.errorMsg = 'Flipper token unauthorized.(Contact to Flipper Team) ';
+        if(response == 403 || response == '403'){
+          this.v.errorMsg="Flipper token unauthorized.(Contact to Flipper Team) ";
 
         }
         this.bootstrapper.bootstrap(response.data);
-        this.router.navigate(['']).then(navigated => {
+        this.router.navigate([""]).then(navigated => {
           this.v.loading = false;
           if (!navigated) {
-            this.router.navigate(['']);
+            this.router.navigate([""]);
           }
         });
       },
       error => {
-        this.v.errorMsg = 'These credentials do not match our records. ';
+        this.v.errorMsg="These credentials do not match our records. ";
        // console.log(error)
-        this.v.errors = error.messages;
+        this.v.errors = error["messages"];
         this.v.loading = false;
       }
     );
   }
   isElectron = () => {
     return window && window.process && window.process.type;
-  }
+  };
   public openForgetPassword() {
     if (this.isElectron()) {
-      // this._electronService.shell.openExternal("https://yegobox.com/login");
+      this._electronService.shell.openExternal("https://yegobox.com/login");
     }
   }
 }

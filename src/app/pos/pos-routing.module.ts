@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import { PosComponent } from './pos/pos.component';
 import { AuthGuard } from '../common/guards/auth-guard.service';
-import { SalePointComponent } from './sale-point/sale-point.component';
 import { ItemCategoriesComponent } from './pos/load-item/item-categories/item-categories.component';
 import { PosProductsComponent } from './pos/load-item/pos-products/pos-products.component';
 
@@ -30,17 +29,17 @@ const posRoutes: Routes = [
 
             {
             path: 'till-orders',
-            loadChildren: ()=> import('./../../app/orders/orders.module').then(m => m.OrdersModule),
+            loadChildren: 'app/orders/orders.module#OrdersModule',
             canActivate: [AuthGuard]
             },
             {
               path: 'till-customers',
-              loadChildren: ()=> import('./../../app/customers/customers.module').then(m => m.CustomersModule),
+              loadChildren: 'app/customers/customers.module#CustomersModule',
               canActivate: [AuthGuard]
             },
             {
               path: 'till-pay',
-              loadChildren: () => import('./../pay/pay.module').then(m => m.PayModule),
+              loadChildren: 'app/pay/pay.module#PayModule',
               canActivate: [AuthGuard]
             }
         ]

@@ -22,7 +22,7 @@ import { PrintReceiptModelComponent } from '../../print-out/print-receipt-model/
   encapsulation: ViewEncapsulation.None,
 })
 export class InvoiceComponent implements OnInit, OnDestroy{
-  @ViewChild(MatSort,{static:true}) matSort: MatSort;
+  @ViewChild(MatSort) matSort: MatSort;
 
   public dataSource: PaginatedDataTableSource<Invoice>;
   public loading = new BehaviorSubject(false);

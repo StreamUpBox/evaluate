@@ -61,7 +61,7 @@ import { MaterialModule } from '../../../material/material.module';
         NotFoundPageComponent
     ],
     exports: [
-        SwitchBranchModelComponent, SwitchBranchComponent,
+        SwitchBranchModelComponent,SwitchBranchComponent,
         LoadingIndicatorComponent,
         NoResultsMessageComponent,
         CustomMenuComponent,

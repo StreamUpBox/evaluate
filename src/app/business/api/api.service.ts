@@ -14,11 +14,11 @@ export class ApiService {
     public create(params: Business): BackendResponse<{ data: any }> {
         return this.http.post(API_ROUTES.BUSINESS, params);
     }
-    public update(params: Business, id: number): BackendResponse<{ data: any }> {
-      return this.http.put(API_ROUTES.BUSINESS + '/' + id, params);
+    public update(params: Business,id:number): BackendResponse<{ data: any }> {
+      return this.http.put(API_ROUTES.BUSINESS+'/'+id, params);
    }
-   public updateReceipt(params: any, id: number): BackendResponse<{ data: any }> {
-    return this.http.put('update-receipt/' + id, params);
+   public updateReceipt(params: any,id:number): BackendResponse<{ data: any }> {
+    return this.http.put('update-receipt/'+id, params);
  }
 
 }

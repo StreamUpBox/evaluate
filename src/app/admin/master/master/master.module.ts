@@ -23,6 +23,9 @@ import { SelectBrandModalComponent } from '../brands/select-brand-modal/select-b
 import { CrupdateBranchModalComponent } from '../branch/crupdate-branch-modal/crupdate-branch-modal.component';
 import { AssignStockToBranchComponent } from '../branch/assign-stock-to-branch/assign-stock-to-branch.component';
 import { SetupModule } from '../../../setup/setup.module';
+import { SuppliersComponent } from '../suppliers/suppliers.component';
+import { ApiSupplierService } from '../suppliers/api/api.service';
+import { CrupdateSupplierModalComponent } from '../suppliers/crupdate-supplier-modal/crupdate-supplier-modal.component';
 
 @NgModule({
   imports: [
@@ -48,7 +51,9 @@ import { SetupModule } from '../../../setup/setup.module';
     CrupdateBrandModalComponent,
     SelectCategoryModelComponent,
     SelectBrandModalComponent,
-    CrupdateBranchModalComponent
+    CrupdateBranchModalComponent,
+    SuppliersComponent,
+    CrupdateSupplierModalComponent
     ],
   declarations: [
     ItemsComponent,
@@ -62,17 +67,21 @@ import { SetupModule } from '../../../setup/setup.module';
     CrupdateBrandModalComponent,
     SelectCategoryModelComponent,
     SelectBrandModalComponent,
-    CrupdateBranchModalComponent
+    CrupdateBranchModalComponent,
+    SuppliersComponent,
+    CrupdateSupplierModalComponent
   ],
   providers: [
     ApiItemService,
     ApiCategoryService,
-    ApiBranchService
+    ApiBranchService,
+    ApiSupplierService
   ],
 entryComponents: [CrupdateCategoryModalComponent,
   CrupdateBrandModalComponent,
   SelectCategoryModelComponent,
   AssignStockToBranchComponent,
+  CrupdateSupplierModalComponent,
   SelectBrandModalComponent,CrupdateBranchModalComponent,AddItemComponent]
 })
 export class MasterModule {

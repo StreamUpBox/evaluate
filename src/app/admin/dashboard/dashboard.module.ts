@@ -1,4 +1,4 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { MaterialModule } from '../../material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -14,24 +14,23 @@ import { AnalyticsComponent } from './analytics/analytics.component';
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    MaterialModule,
-    FormsModule,
-    UiModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    HttpModule,
-    DataTableModule],
+     MaterialModule,
+      FormsModule,
+       UiModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        HttpModule,
+        DataTableModule],
   exports: [
     DashboardComponent
-  ],
+    ],
   declarations: [
     DashboardComponent,
     AnalyticsComponent
   ],
   providers: [
   ],
-  entryComponents: [],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+entryComponents: []
 })
 export class DashbordModule {
 

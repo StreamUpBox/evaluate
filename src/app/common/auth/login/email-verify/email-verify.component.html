@@ -56,8 +56,11 @@
 
         <div class="clearfix"></div>
         <div class="row" style="margin-top:17%; float: left;">
-          <div *ngIf="v.errorMsg!=''">{{v.errorMsg}}
-            <a mat-button class="mat-button pl-0" (click)="openRegister()">&nbsp;&nbsp;
+          <div *ngIf="v.errorMsg!=''">
+          <mat-error>
+          {{v.errorMsg}}
+          </mat-error>
+            <a mat-button color="primary" class="mat-button pl-0" (click)="openRegister()">&nbsp;&nbsp;
               Create account with yegobox &nbsp;</a>
           </div>
         </div>
@@ -72,27 +75,12 @@
                 <div style="margin-top: 49.8%;">
                   <button  mat-raised-button class="button float-right" *ngIf='!v.loading' (click)="emailVerify()">Next
                   </button>
-                  <button mat-raised-button class="button-cancel float-right" *ngIf='v.loading' (click)="emailVerify()" disable='true'>loading ..</button>
+                  <button mat-raised-button class="button-cancel float-right" *ngIf='v.loading' [disabled]="true">loading ..</button>
                 </div>
               </td>
 
             </tr>
-           <!-- <tr>
-              <td colspan="2">
-                <div class="aCayab">
-                  <div class="Z4o1ee GyDlGb cd29Sd iiFyne
-                                        qs41qe" tabindex="0" role="link" aria-label="Switch account"
-                    [matTooltip]="'Login with google'">
-                    <div class="PH9Bhd">
-                      <img src="assets/images/icons/g-google.svg" alt="" class="TrZEUc"></div>
-                    <div class="vgHGpc RRP0oc"> Login with
-                      google
-                    </div>
-                  </div>
-                </div>
-              </td>
-            </tr>
-            -->
+          
           </table>
 
         </div>

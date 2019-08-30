@@ -22,6 +22,8 @@ import { TaxRatesComponent } from '../setup/tax-rates/tax-rates.component';
 import { ReasonComponent } from '../setup/reasons/reason.component';
 import { ExpirationSettingComponent } from '../setup/expiration_setting/expiration_setting.component';
 import { StockTableComponent } from '../stock/stock-table/stock-table.component';
+import { SuppliersComponent } from './master/suppliers/suppliers.component';
+import { StockOrdersComponent } from '../stock/stock-orders/stock-orders.component';
 
 
 const routes: Routes = [
@@ -47,21 +49,22 @@ const routes: Routes = [
                       { path: 'item', component: ItemsComponent },
                       { path: 'category', component: CategoriesComponent },
                       { path: 'brand', component: BrandComponent },
-                      { path: 'add-item', component: AddItemComponent }
+                      { path: 'add-item', component: AddItemComponent },
+                      { path: 'supplier', component: SuppliersComponent },
                   ]
               },
               {
                 path: 'stock', children: [
                       { path: 'stock-control', component: StockTableComponent },
-                      { path: 'stock-order', component: StockTableComponent },
                       { path: 'stockmovement', component: StockMovementComponent },
-                      { path: 'expireditem', component: ExpiredStockComponent}
+                      { path: 'expireditem', component: ExpiredStockComponent},
+                      { path: 'orders', component: StockOrdersComponent},
                   ]
               },{
               path: 'sales', children: [
               {
                 path: 'invoices',
-                loadChildren: () => import('./../../app/invoices/invoices.module').then(m => m.InvoicesModule),
+                loadChildren: 'app/invoices/invoices.module#InvoicesModule',
                 canActivate: [AuthGuard]
               },
               {

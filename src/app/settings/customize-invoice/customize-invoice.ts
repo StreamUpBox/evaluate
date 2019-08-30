@@ -1,7 +1,7 @@
 import { CustomerType } from '../../setup/customerType/api/CustomerType';
 
 export class CustomizeInvoice {
-id?: number;
+id?:number;
 company_name?: string;
 address?: string;
 contact?: string;
@@ -21,8 +21,8 @@ amount?: string;
 number?: string;
 adherent?: string;
 done_at?: string;
-done_title?: string;
-done_on?: string;
+done_title?:string;
+done_on?:string;
 nom_signature_cachet?: string;
 reception_title?: string;
 reception_field_a?: string;
@@ -43,13 +43,13 @@ hide_reception_table?: boolean;
 hide_visa?: boolean;
 hide_logo?: boolean;
 is_default?: boolean;
-has_customer_type?: boolean;
-business_id?: number;
-customerTypeIds?: Array<number>;
-customerTypes?: Array<CustomerType>;
+has_customer_type?:boolean;
+business_id?:number;
+customerTypeIds?:Array<number>;
+customerTypes?:Array<CustomerType>;
 
   constructor(params: Object = {}) {
-    for (const name in params) {
+    for (let name in params) {
       this[name] = params[name];
     }
   }

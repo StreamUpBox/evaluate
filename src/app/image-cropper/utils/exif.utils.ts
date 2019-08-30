@@ -14,7 +14,7 @@ export function resetExifOrientation(srcBase64: string): Promise<string> {
 export function transformBase64BasedOnExifRotation(srcBase64: string, exifRotation: number): Promise<string> {
     return new Promise((resolve, reject) => {
         const img = new Image();
-        img.onload = function() {
+        img.onload = function () {
             const width = img.width;
             const height = img.height;
             const canvas = document.createElement('canvas');
@@ -47,7 +47,7 @@ function getExifRotation(imageBase64: string): number {
     const length = view.byteLength;
     let offset = 2;
     while (offset < length) {
-        if (view.getUint16(offset + 2, false) <= 8) { return -1; }
+        if (view.getUint16(offset + 2, false) <= 8) return -1;
         const marker = view.getUint16(offset, false);
         offset += 2;
         if (marker == 0xFFE1) {
@@ -64,9 +64,11 @@ function getExifRotation(imageBase64: string): number {
                     return view.getUint16(offset + (i * 12) + 8, little);
                 }
             }
-        } else if ((marker & 0xFF00) != 0xFF00) {
+        }
+        else if ((marker & 0xFF00) != 0xFF00) {
             break;
-        } else {
+        }
+        else {
             offset += view.getUint16(offset, false);
         }
     }

@@ -10,16 +10,17 @@ export class Modal {
     constructor(private dialog: MatDialog) {}
 
     public open<T>(component: ComponentType<T>, data: object = {}, config: string|MatDialogConfig = {}): MatDialogRef<T> {
-        if ( ! data) { data = {}; }
+        if ( ! data) data = {};
 
-        if (typeof config === 'string') { config = {panelClass: config}; }
-        if ( ! Array.isArray(config.panelClass)) { config.panelClass = [config.panelClass]; }
+        if (typeof config === 'string') config = {panelClass: config};
+        if ( ! Array.isArray(config.panelClass)) config.panelClass = [config.panelClass];
         config.panelClass.push('be-modal');
 
         return this.dialog.open(component, {...config, data});
     }
 
     public show<T>(component: ComponentType<T>, data: object = {}): MatDialogRef<T> {
+        
         return this.open(component, data);
     }
 

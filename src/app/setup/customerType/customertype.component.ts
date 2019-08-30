@@ -19,7 +19,7 @@ import { GlobalVariables } from '../../common/core/global-variables';
   encapsulation: ViewEncapsulation.None,
 })
 export class CustomerTypeComponent implements  OnInit, OnDestroy {
-  @ViewChild(MatSort,{static:true}) matSort: MatSort
+  @ViewChild(MatSort) matSort: MatSort
   @Input() public enableSelectButton:boolean=false;
   @Input() public selectedId:number=0;
   @Output() valueChange = new EventEmitter<CustomerType>();

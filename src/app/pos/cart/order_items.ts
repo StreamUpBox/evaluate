@@ -14,29 +14,29 @@ export class OrderItems {
   total_amount?: number;
   taxable_amount?: number;
   discount_value?: number;
-  tax_rate_percentage?: number;
-  customer_type_discount_value?: number;
-  customer_type_name?: string;
-  taxable_vat?: number;
-  discount_reason_id?: number;
-  refund_reason_id?: number;
+  tax_rate_percentage?:number;
+  customer_type_discount_value?:number;
+  customer_type_name?:string;
+  taxable_vat?:number;
+  discount_reason_id?:number;
+  refund_reason_id?:number;
   item?: string;
   tax?: number;
-  item_code?: string;
+  item_code?:string;
   note?: string;
-  batch_no?: string;
-  reason_id?: number;
-  tax_rate_id?: number;
-  sale_price_id?: number;
-  tax_rate?: TAXRATE;
-  stock?: Stock;
-  action?: string;
-  sale_price?: CustomerTypePrices;
-  available_qty?: number;
-  changed_price?: number;
-  lastUpdated?: boolean;
+  batch_no?:string;
+  reason_id?:number;
+  tax_rate_id?:number;
+  sale_price_id?:number;
+  tax_rate?:TAXRATE;
+  stock?:Stock;
+  action?:string;
+  sale_price?:CustomerTypePrices;
+  available_qty?:number;
+  changed_price?:number;
+  lastUpdated?:boolean;
   constructor(params: Object = {}) {
-    for (const name in params) {
+    for (let name in params) {
       this[name] = params[name];
     }
   }

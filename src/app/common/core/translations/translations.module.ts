@@ -1,4 +1,4 @@
-import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {TranslateDirective} from './translate.directive';
 import { TransPipe } from './translate.pipe';
 
@@ -11,6 +11,5 @@ import { TransPipe } from './translate.pipe';
         TranslateDirective,
         TransPipe,
     ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class TranslationsModule {}

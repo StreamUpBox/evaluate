@@ -9,6 +9,6 @@ import {Settings} from '../../config/settings.service';
     encapsulation: ViewEncapsulation.None,
 })
 export class NoResultsMessageComponent {
-    @Input() public hideImg = false;
+    @Input() public hideImg: boolean=false;
     constructor(public settings: Settings) {}
 }

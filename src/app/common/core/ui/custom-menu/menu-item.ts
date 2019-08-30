@@ -3,13 +3,13 @@ export class MenuItem {
     label: string;
     icon: string;
     action: string;
-    type = 'link';
-    order = 1;
+    type: string = 'link';
+    order: number = 1;
     condition: string = null;
-    position = 0;
+    position: number = 0;
 
     constructor(params: Object = {}) {
-        for (const name in params) {
+        for (let name in params) {
             this[name] = params[name];
         }
 

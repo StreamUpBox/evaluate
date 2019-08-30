@@ -1,4 +1,4 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { AdminComponent } from "./admin.component";
 import { MaterialModule } from "../material/material.module";
@@ -29,8 +29,7 @@ import { NavService } from '../nav-menu-bar/nav.service';
   ],
   exports: [AdminComponent,MenuListItemComponent],
   declarations: [AdminComponent,MenuListItemComponent],
-  providers: [NavService],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  providers: [NavService]
 })
 export class AdminModule {
   constructor(public g: GlobalVariables) {

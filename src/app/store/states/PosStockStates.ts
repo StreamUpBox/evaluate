@@ -1,5 +1,5 @@
 import { ApiPosService } from '../../pos/api/api.service';
-import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
+ import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 
 import { tap } from 'rxjs/internal/operators/tap';
 import { POS_STOCK_STATE_MODEL_DEFAULTS } from '../model/pos-stock-state';
@@ -13,7 +13,7 @@ import { Stock } from '../../stock/api/stock';
 })
 
 export class PosStockStates {
-  constructor(private api: ApiPosService, private store: Store) { }
+  constructor(private api: ApiPosService,private store:Store) { }
   @Selector()
   static entries(state: PosStockState) {
     return state.data;
@@ -63,12 +63,10 @@ export class PosStockStates {
       order_dir: meta.sort_direction,
       ...params
     };
-    if (meta.query) {
+    if (meta.query)
       queryParams.query = meta.query;
-    }
-    if (meta.type) {
+    if (meta.type)
       queryParams.type = meta.type;
-    }
     return queryParams;
   }
 
@@ -93,13 +91,13 @@ export class PosStockStates {
           ...newState.meta,
           last_page: response.last_page,
           current_page: response.current_page,
-          from: response.from,
-          to: response.to,
+          from:response.from,
+          to:response.to,
           total: response.total,
           per_page: response.per_page,
           path: response.path,
           next_page_url: response.next_page_url,
-          prev_page_url: response.prev_page_url
+          prev_page_url:response.prev_page_url
         },
         loading: false
       } as Partial<PosStockState>;
@@ -109,13 +107,13 @@ export class PosStockStates {
       return ctx.patchState({ loading: false });
     }));
   }
-  removeDups(data: Stock[]= []) {
-      const obj = {};
+  removeDups(data: Stock[]=[]) {
+      let obj = {};
       data = Object.keys(data.reduce((prev, next) => {
-        if (!obj[next.id]) { obj[next.id] = next; }
+        if (!obj[next.id]) obj[next.id] = next;
         return obj;
       }, obj)).map((i) => obj[i]);
       return data.reverse();
-    }
+    };
 
  }

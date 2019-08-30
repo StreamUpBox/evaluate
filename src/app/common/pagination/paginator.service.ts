@@ -1,17 +1,10 @@
 import {EventEmitter, Injector} from '@angular/core';
-import {Observable} from 'rxjs';
-import {share, finalize} from 'rxjs/operators';
+import {Observable} from "rxjs";
+import {share, finalize} from "rxjs/operators";
 import {snakeCase} from '../core/utils/snake-case';
 import {AppHttpClient} from '../core/http/app-http-client.service';
 
 export class Paginator {
-
-    /**
-     * Paginator Constructor.
-     */
-    constructor(protected injector: Injector, public serverUri?: string) {
-        this.httpClient = this.injector.get(AppHttpClient);
-    }
 
     /**
      * Fired when paginator moves to different page or is refreshed.
@@ -55,17 +48,10 @@ export class Paginator {
     public httpClient: AppHttpClient;
 
     /**
-     * Get initial paginator params.
+     * Paginator Constructor.
      */
-    protected static getInitialParams() {
-        return {
-            currentPage: 1,
-            total: 1,
-            perPage: 8,
-            lastPage: 1,
-            to: 1,
-            from: 1,
-        };
+    constructor(protected injector: Injector, public serverUri?: string) {
+        this.httpClient = this.injector.get(AppHttpClient);
     }
 
     /**
@@ -116,7 +102,7 @@ export class Paginator {
      */
     public nextPage() {
         if (this.hasNext()) {
-            this.goToPage(this.params.currentPage + 1);
+            this.goToPage(this.params.currentPage+1);
         }
     }
 
@@ -125,7 +111,7 @@ export class Paginator {
      */
     public prevPage() {
         if (this.hasPrev()) {
-            this.goToPage(this.params.currentPage - 1);
+            this.goToPage(this.params.currentPage-1);
         }
     }
 
@@ -157,12 +143,12 @@ export class Paginator {
     /**
      * Normalize specified router params.
      */
-    protected normalizeParams(params: any) {
-        const lastPage = Math.ceil(this.params.total / this.params.perPage);
+    protected normalizeParams(params: Object) {
+        let lastPage = Math.ceil(this.params.total / this.params.perPage);
 
-        // navigate to last page is specified page is invalid
-        if (params.page && params.page > lastPage) {
-            params.page = lastPage;
+        //navigate to last page is specified page is invalid
+        if (params['page'] && params['page'] > lastPage) {
+            params['page'] = lastPage;
         }
 
         return params;
@@ -172,7 +158,7 @@ export class Paginator {
      * Fired when any of router parameters are changed by user (via pagination controls).
      */
     public onParamChange(name: string) {
-        const params = {};
+        let params = {};
         params[snakeCase(name)] = this.params[name];
         this.refresh(params);
     }
@@ -181,7 +167,7 @@ export class Paginator {
      * Set pagination parameters.
      */
     public setParams(params) {
-        if ( ! params) { return; }
+        if ( ! params) return;
 
         this.params.currentPage = params.current_page;
         this.params.total       = params.total;
@@ -202,7 +188,7 @@ export class Paginator {
      * Make paginated request to specified page.
      */
     protected makeRequest(params = {}): Observable<any> {
-        if (this.isLoading) { return this.serverRequest; }
+        if (this.isLoading) return this.serverRequest;
 
         this.isLoading = true;
 
@@ -229,6 +215,20 @@ export class Paginator {
             this.staticQueryParams,
             params
         );
+    }
+
+    /**
+     * Get initial paginator params.
+     */
+    protected static getInitialParams() {
+        return {
+            currentPage: 1,
+            total: 1,
+            perPage: 8,
+            lastPage: 1,
+            to: 1,
+            from: 1,
+        };
     }
 
     /**

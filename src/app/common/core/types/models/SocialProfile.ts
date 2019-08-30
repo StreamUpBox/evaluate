@@ -1,4 +1,4 @@
-import {User} from './User';
+import {User} from "./User";
 
 export class SocialProfile {
 	id: number;
@@ -11,7 +11,7 @@ export class SocialProfile {
 	user?: User;
 
 	constructor(params: Object = {}) {
-        for (const name in params) {
+        for (let name in params) {
             this[name] = params[name];
         }
     }

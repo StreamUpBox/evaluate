@@ -1,4 +1,4 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NewBusinessComponent } from './new-business/new-business.component';
 import { MaterialModule } from '../material/material.module';
@@ -9,14 +9,13 @@ import { TitleBarModule } from '../title-bar/title-bar.module';
 
 @NgModule({
   imports: [
-    CommonModule, MaterialModule,
+    CommonModule,MaterialModule,
     FormsModule,
     ReactiveFormsModule,
     UiModule,
     ImageCropperModule
   ],
   declarations: [NewBusinessComponent],
-  exports: [NewBusinessComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  exports:[NewBusinessComponent]
 })
 export class BusinessModule { }

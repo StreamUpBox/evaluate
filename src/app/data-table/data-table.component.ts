@@ -43,7 +43,7 @@ export class DataTableComponent<T> implements OnInit, AfterContentInit {
     /**
      * Instance of material table.
      */
-    @ViewChild(MatTable,{static:true}) table: MatTable<T>;
+    @ViewChild(MatTable) table: MatTable<T>;
 
     /**
      * Column definitions provided via ng-content.
@@ -53,7 +53,7 @@ export class DataTableComponent<T> implements OnInit, AfterContentInit {
     /**
      * Instance of material paginator component.
      */
-    @ViewChild(MatPaginator,{static:true}) matPaginator: MatPaginator;
+    @ViewChild(MatPaginator) matPaginator: MatPaginator;
 
     /**
      * Data table source provided by user.

@@ -24,7 +24,7 @@ import { LocalStorage } from '../../common/core/services/local-storage.service';
 export class DisplayExpiredStockByCustomComponent implements OnInit {
 
 //entries
-@ViewChild(MatSort,{static:true}) matSort: MatSort;
+@ViewChild(MatSort) matSort: MatSort;
 public dataSource=new MatTableDataSource<StockExpired>([]);
 public loading = new BehaviorSubject(false);
 searchForm: FormGroup;
@@ -65,7 +65,9 @@ constructor(private localStorage: LocalStorage,private store:Store,private api:A
         this.loadData();
 }
 loadData(){
-  this.localStorage.set('stockExpiredUrl',"expired_item/custom/"+parseInt(localStorage.getItem('active_branch'))+'/'+this.searchForm.value.from+'/'+this.searchForm.value.to);
+  const from= this.searchForm.value.from?this.searchForm.value.from.getDate() + "-" + (this.searchForm.value.from.getMonth() + 1) + "-" + this.searchForm.value.from.getFullYear():null;
+  const to= this.searchForm.value.to?this.searchForm.value.to.getDate() + "-" + (this.searchForm.value.to.getMonth() + 1) + "-" + this.searchForm.value.to.getFullYear():null;
+  this.localStorage.set('stockExpiredUrl',"expired_item/custom/"+parseInt(localStorage.getItem('active_branch'))+'/'+from+'/'+to);
   this.store.dispatch(new LoadStockExpiredEntries());
 
 }

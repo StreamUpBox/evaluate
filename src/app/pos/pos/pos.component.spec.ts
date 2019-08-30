@@ -4,7 +4,6 @@ import { PosModule } from "../pos.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterTestingModule } from "@angular/router/testing";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe("PosComponent", () => {
   let component: PosComponent;
@@ -18,9 +17,9 @@ describe("PosComponent", () => {
         RouterTestingModule,
         HttpClientTestingModule
       ],
-      declarations: [],
+      declarations: []
       //can be used to ignore the nested component
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+      // schemas: [CUSTOM_ELEMENTS_SCHEMA]
     });
   }));
 

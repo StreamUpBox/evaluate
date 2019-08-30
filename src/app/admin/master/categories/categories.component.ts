@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild,ViewEncapsulation, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { ApiCategoryService } from './api/api.service';
 import {MatSort } from '@angular/material';
 import { Category } from './api/category';
@@ -20,17 +20,17 @@ import { GlobalVariables } from '../../../common/core/global-variables';
   encapsulation: ViewEncapsulation.None,
 })
 export class CategoriesComponent implements OnInit, OnDestroy {
-  @ViewChild(MatSort, {static: true}) matSort: MatSort;
-  @Input() public enableSelectButton = false;
-  @Input() public selectedId = 0;
+  @ViewChild(MatSort) matSort: MatSort;
+  @Input() public enableSelectButton:boolean=false;
+  @Input() public selectedId:number=0;
 
   @Output() valueChange = new EventEmitter<Category>();
   public dataSource: PaginatedDataTableSource<Category>;
   public loading = new BehaviorSubject(false);
-  constructor(public v: GlobalVariables, public shared: SharedModelService, public paginator: UrlAwarePaginator, private modal: Modal, private api: ApiCategoryService) { }
+  constructor(public v: GlobalVariables,public shared:SharedModelService, public paginator: UrlAwarePaginator,private modal: Modal,private api:ApiCategoryService) { }
 
   ngOnInit() {
-    if (!this.enableSelectButton) {
+    if(!this.enableSelectButton){
       this.v.webTitle('Manage Categories');
     }
     this.dataSource = new PaginatedDataTableSource<Category>({
@@ -67,7 +67,7 @@ ngOnDestroy() {
           body:  'Are you sure you want to delete selected categories?',
           ok:    'Delete'
       }).afterClosed().subscribe(confirmed => {
-          if ( ! confirmed) { return; }
+          if ( ! confirmed) return;
           this.deleteSelectedCategories();
       });
   }
@@ -84,12 +84,12 @@ ngOnDestroy() {
           'crupdate-category-modal-container'
       ).beforeClose().subscribe(data => {
         this.shared.remove();
-        if ( ! data) { return; }
-        this.paginator.refresh();
+          if ( ! data) return;
+          this.paginator.refresh();
       });
   }
 
-  selectCategory(category: Category) {
+  selectCategory(category:Category){
     return this.valueChange.emit(category);
   }
 }

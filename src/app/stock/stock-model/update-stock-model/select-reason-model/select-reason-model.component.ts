@@ -21,7 +21,7 @@ export interface enableSelectButtonModalData {
 })
 export class SelectReasonModelComponent implements OnInit {
 
-  @ViewChild(MatSort,{static:true}) matSort: MatSort;
+  @ViewChild(MatSort) matSort: MatSort;
   public dataSource: PaginatedDataTableSource<Reason>;
   @Input() public reasonName: string='Reason';
   @Input() public reasonType: string='stock_movements';

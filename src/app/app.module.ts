@@ -5,8 +5,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import {
   NgModule,
   Injectable,
-  ErrorHandler,
-  CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
+  ErrorHandler} from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule, HttpClient } from "@angular/common/http";
 import { AppRoutingModule } from "./app-routing.module";
@@ -30,7 +29,7 @@ import * as Sentry from "@sentry/browser";
 import { RedirectComponent } from "./redirect/redirect.component";
 import { NgxsModule } from "@ngxs/store";
 import { NgxModelModule } from "ngx-model";
-// import { NgxElectronModule } from "ngx-electron";
+import { NgxElectronModule } from "ngx-electron";
 import { AppConfig } from '../environments/environment';
 import { CheckInternetComponent } from './check-internet/check-internet.component';
 import { GlobalVariables } from './common/core/global-variables';
@@ -63,7 +62,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     CheckInternetComponent,
   ],
   imports: [
-    // NgxElectronModule,
+    NgxElectronModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
@@ -96,7 +95,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     { provide: ErrorHandler, useClass: SentryErrorHandler },
     // {provide: LocationStrategy, useClass: PathLocationStrategy},
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule {

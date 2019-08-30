@@ -1,4 +1,4 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import { NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SetupComponent } from './setup.component';
 import { TaxRatesComponent } from './tax-rates/tax-rates.component';
@@ -52,7 +52,6 @@ import { AttachItemCustomerTypesModelComponent } from './customerType/attach-ite
     ApiExpirationSettingService,
     NavService
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   entryComponents: [
     CrupdateCustomerTypeModalComponent,
     CrupdateTaxRateModalComponent,

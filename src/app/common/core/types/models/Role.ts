@@ -12,7 +12,7 @@ export class Role {
     // users?: User[];
 
     constructor(params: Object = {}) {
-        for (const name in params) {
+        for (let name in params) {
             this[name] = params[name];
         }
     }
