@@ -5,7 +5,7 @@ import { EmailVerifyComponent } from "./email-verify.component";
 
 import { Settings } from "../../../core/config/settings.service";
 import { GlobalVariables } from "../../../core/global-variables";
-import { ElectronService } from "ngx-electron";
+// import { ElectronService } from "ngx-electron";
 import { Router, ActivatedRoute } from "@angular/router";
 import { RouterTestingModule } from "@angular/router/testing";
 import { ApiService } from "../../../../api/api.service";
@@ -39,7 +39,7 @@ describe("VerifyEmailComponent", () => {
   let auth: AuthService;
   let v: GlobalVariables;
   let api: ApiService;
-  let e: ElectronService;
+  // let e: ElectronService;
   let httpclient: AppHttpClient;
   let currentUser: CurrentUser;
   let router: Router;
@@ -49,7 +49,9 @@ describe("VerifyEmailComponent", () => {
   let localStorage: YLocalStorage;
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [EmailVerifyComponent, ElectronService],
+      providers: [EmailVerifyComponent, 
+        // ElectronService
+      ],
       imports: [
         CommonModule,
         FormsModule,
@@ -81,8 +83,8 @@ describe("VerifyEmailComponent", () => {
       localStorage,
       setting
     );
-    e = new ElectronService();
-    v = new GlobalVariables();
+    // e = new ElectronService();
+    // v = new GlobalVariables();
     //tip: I can do new EmailVerifyComponent(null);
     component = new EmailVerifyComponent(setting, auth, v, e);
   }));
@@ -90,8 +92,8 @@ describe("VerifyEmailComponent", () => {
     expect(component).toBeTruthy();
   });
   it("should call verifyEmail Function", () => {
-    spyOn(component, "emailVerify").and.returnValues(true);
-    spyOn(auth, "verifyUserEmail").and.returnValue(true);
+    // spyOn(component, "emailVerify").and.returnValues(true);
+    // spyOn(auth, "verifyUserEmail").and.returnValue(true);
     expect(component.emailVerify()).toBeTruthy();
   });
 });

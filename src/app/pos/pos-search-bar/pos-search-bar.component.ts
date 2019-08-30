@@ -27,7 +27,7 @@ import { Customer } from '../../customers/customer';
 })
 export class PosSearchBarComponent implements OnInit
 {
-  @ViewChild('trigger', {read: ElementRef}) trigger: ElementRef;
+  @ViewChild('trigger', {static:true, read: ElementRef}) trigger: ElementRef;
   formControl = new FormControl();
   //public results: BehaviorSubject<State[]> = new BehaviorSubject([]);
   public results: Observable<any>;

@@ -19,7 +19,7 @@ import { GlobalVariables } from '../../common/core/global-variables';
   encapsulation: ViewEncapsulation.None,
 })
 export class TaxRatesComponent implements  OnInit, OnDestroy {
-  @ViewChild(MatSort) matSort: MatSort;
+  @ViewChild(MatSort, {static:true}) matSort: MatSort;
   public dataSource: PaginatedDataTableSource<TAXRATE>;
   @Input() public enableSelectButton:boolean=false;
   @Input() public selectedId:number=0;

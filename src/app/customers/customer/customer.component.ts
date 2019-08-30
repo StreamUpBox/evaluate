@@ -20,7 +20,7 @@ import { LocalStorage } from '../../common/core/services/local-storage.service';
 })
 export class CustomersComponent implements OnInit {
 
-  @ViewChild(MatSort) matSort: MatSort;
+  @ViewChild(MatSort, {static:true}) matSort: MatSort;
   @Input() public enableSelectButton:boolean=false;
 
   @Input() public hiddenCheckBox:boolean=false;

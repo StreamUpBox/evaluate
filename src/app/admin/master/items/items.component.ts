@@ -28,7 +28,7 @@ import { AddItemComponent } from './add-item/add-item.component';
   encapsulation: ViewEncapsulation.None,
 })
 export class ItemsComponent implements  OnInit,OnDestroy {
-  @ViewChild(MatSort) matSort: MatSort;
+  @ViewChild(MatSort, {static:true}) matSort: MatSort;
 
   public dataSource: PaginatedDataTableSource<Item>;
   public loading = new BehaviorSubject(false);

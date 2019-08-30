@@ -19,7 +19,7 @@ import { CrupdateSupplierModalComponent } from './crupdate-supplier-modal/crupda
   encapsulation: ViewEncapsulation.None,
 })
 export class SuppliersComponent implements OnInit {
-  @ViewChild(MatSort) matSort: MatSort;
+  @ViewChild(MatSort,{static:true}) matSort: MatSort;
   @Input() public enableSelectButton:boolean=false;
   @Input() public selectedId:number=0;
 

@@ -11,7 +11,7 @@ import { CurrentUser } from '../common/auth/current-user';
 export class AdminComponent implements OnInit, AfterViewInit {
 
     isOpened:boolean=true;
-    @ViewChild('appDrawer') appDrawer: ElementRef;
+    @ViewChild('appDrawer',{static:true}) appDrawer: ElementRef;
     navItems: NavItem[] =[];
     constructor(public navService: NavService,private currentUser:CurrentUser) {}
 

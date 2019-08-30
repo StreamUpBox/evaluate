@@ -24,7 +24,7 @@ export interface SelectorBox {
   encapsulation: ViewEncapsulation.None,
 })
 export class StockOrdersComponent implements OnInit, OnDestroy {
-  @ViewChild(MatSort) matSort: MatSort;
+  @ViewChild(MatSort, {static:true}) matSort: MatSort;
   public dataSource: PaginatedDataTableSource<Orders>;
   public loading = new BehaviorSubject(false);
   cart: EventEmitter<Stock> = new EventEmitter();

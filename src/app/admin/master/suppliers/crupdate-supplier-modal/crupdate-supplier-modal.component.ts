@@ -2,11 +2,11 @@ import {Component, Inject, ViewEncapsulation, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 
 import { finalize } from 'rxjs/operators';
-import { Supplier } from '../api/Supplier';
 import { Toast } from '../../../../common/core/ui/toast.service';
 import { ApiSupplierService } from '../api/api.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
+import { Supplier } from '../api/supplier';
 
 export interface CrupdateSupplierModalData {
     supplier?: Supplier;

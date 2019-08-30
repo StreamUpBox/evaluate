@@ -7,7 +7,7 @@ import {
   OnInit
 } from "@angular/core";
 import * as Raven from "raven-js";
-import { ElectronService } from 'ngx-electron';
+// import { ElectronService } from 'ngx-electron';
 import { GlobalVariables } from '../../core/global-variables';
 Raven.config(
   "https://dff6a3f171414762ac4f1c7e084289c3@sentry.io/1323436"
@@ -26,9 +26,11 @@ export class LoginComponent implements OnInit {
     // Raven.captureException("we can not load item from stock sir sorry");
     // Raven.showReportDialog();
   }
-  constructor(private _electronService: ElectronService, public v: GlobalVariables) {
+  constructor(
+    // private _electronService: ElectronService, 
+    public v: GlobalVariables) {
     if (this.isElectron()) {
-      this.ipcRenderer = this._electronService.ipcRenderer;
+      // this.ipcRenderer = this._electronService.ipcRenderer;
       this.ipcRenderer.send("version-ping", "ping");
       this.ipcRenderer.on("version-pong", (event, version) => {
         this.v.webTitle("Sign in" + "- version:" + version);

@@ -21,7 +21,7 @@ import { ApiUserService } from './api/api.service';
 export class UsersComponent implements OnInit,OnDestroy {
 
  
-  @ViewChild(MatSort) matSort: MatSort;
+  @ViewChild(MatSort, {static:true}) matSort: MatSort;
   @Input() public enableSelectButton:boolean=false;
   @Input() public selectedId:number=0;
 

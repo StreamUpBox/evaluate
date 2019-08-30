@@ -37,7 +37,7 @@ import { PrintReceiptModelComponent } from '../../../print-out/print-receipt-mod
   ]
 })
 export class OrderListComponent implements OnInit, OnDestroy {
-  @ViewChild(MatSort) matSort: MatSort;
+  @ViewChild(MatSort, {static:true}) matSort: MatSort;
   public dataSource: PaginatedDataTableSource<Orders>;
   @Input() public enableSelectButton:boolean=false;
   @Input() public selectedId:number=0;

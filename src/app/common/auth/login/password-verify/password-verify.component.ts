@@ -14,7 +14,7 @@ import { Bootstrapper } from "../../../core/bootstrapper.service";
 import { Settings } from "../../../core/config/settings.service";
 
 import { GlobalVariables } from "../../global-variables";
-import { ElectronService } from 'ngx-electron';
+// import { ElectronService } from 'ngx-electron';
 
 @Component({
   selector: "app-password-verify",
@@ -45,11 +45,11 @@ export class PasswordVerifyComponent implements OnInit {
     public dialog: MatDialog,
     private router: Router,
     private auth: AuthService,
-    private _electronService: ElectronService
+    // private _electronService: ElectronService
   ) {
     this.v.loading = false;
     if (this.isElectron()) {
-      this.ipcRenderer = this._electronService.ipcRenderer;
+      // this.ipcRenderer = this._electronService.ipcRenderer;
       this.ipcRenderer.send("version-ping", "ping");
       this.ipcRenderer.on("version-pong", (event, version) => {
         this.v.webTitle("Sign in" + "- version:" + version);
@@ -119,7 +119,7 @@ export class PasswordVerifyComponent implements OnInit {
   };
   public openForgetPassword() {
     if (this.isElectron()) {
-      this._electronService.shell.openExternal("https://yegobox.com/login");
+      // this._electronService.shell.openExternal("https://yegobox.com/login");
     }
   }
 }

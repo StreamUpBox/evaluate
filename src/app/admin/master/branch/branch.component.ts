@@ -22,7 +22,7 @@ import { Bootstrapper } from '../../../common/core/bootstrapper.service';
 })
 export class BranchComponent implements OnInit,OnDestroy {
 
-  @ViewChild(MatSort) matSort: MatSort;
+  @ViewChild(MatSort, {static:true}) matSort: MatSort;
   @Input() public enableSelectButton:boolean=false;
   @Input() public selectedId:number=0;
 

@@ -41,7 +41,6 @@ const routes: Routes = [
             },
             {path: 'analytics', component: AnalyticsComponent},
             {path: 'pos', 
-            // loadChildren: './../../app/pos/pos.module#PosModule', 
             loadChildren: () => import('./../pos/pos.module').then(m => m.PosModule),
             canActivate: [AuthGuard]},
               {
@@ -64,7 +63,7 @@ const routes: Routes = [
               path: 'sales', children: [
               {
                 path: 'invoices',
-                loadChildren: 'app/invoices/invoices.module#InvoicesModule',
+                loadChildren: ()=> import('./../../app/invoices/invoices.module').then(m=>m.InvoicesModule),
                 canActivate: [AuthGuard]
               },
               {
@@ -86,13 +85,9 @@ const routes: Routes = [
               { path: 'tax-rate', component: TaxRatesComponent },
               { path: 'reason', component: ReasonComponent},
               { path: 'expiration_setting', component: ExpirationSettingComponent},
-              //
-                
             ]
           
-          }
-            
-              
+          }  
         ]
 
     }

@@ -4,7 +4,7 @@ import { GlobalVariables } from "../../../core/global-variables";
 import { AuthService } from "../../auth.service";
 import { Settings } from "../../../core/config/settings.service";
 
-import { ElectronService } from "ngx-electron";
+// import { ElectronService } from "ngx-electron";
 @Component({
   selector: "app-email-verify",
   templateUrl: "./email-verify.component.html",
@@ -22,14 +22,14 @@ export class EmailVerifyComponent {
     public settings: Settings,
     private auth: AuthService,
     public v: GlobalVariables,
-    private _electronService: ElectronService
+    // private _electronService: ElectronService
   ) {
     this.emailForm = new FormGroup({
       email: new FormControl("", [Validators.required, Validators.email])
     });
     this.v.loading = false;
     if (this.isElectron()) {
-      this.ipcRenderer = this._electronService.ipcRenderer;
+      // this.ipcRenderer = this._electronService.ipcRenderer;
       this.ipcRenderer.send("version-ping", "ping");
       this.ipcRenderer.on("version-pong", (event, version) => {
         this.v.webTitle("Sign in - eNexus Accounts" + "v" + version);
@@ -42,7 +42,7 @@ export class EmailVerifyComponent {
     return window && window.process && window.process.type;
   };
   gotoWebRegister() {
-    this._electronService.shell.openExternal("https://yegobox.rw/register");
+    // this._electronService.shell.openExternal("https://yegobox.rw/register");
   }
 
   get email() {
@@ -87,7 +87,7 @@ export class EmailVerifyComponent {
   }
   public openRegister() {
     if (this.isElectron()) {
-      this._electronService.shell.openExternal("https://yegobox.com/register");
+      // this._electronService.shell.openExternal("https://yegobox.com/register");
     }
   }
 }

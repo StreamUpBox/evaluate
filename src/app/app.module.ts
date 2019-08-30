@@ -29,7 +29,7 @@ import * as Sentry from "@sentry/browser";
 import { RedirectComponent } from "./redirect/redirect.component";
 import { NgxsModule } from "@ngxs/store";
 import { NgxModelModule } from "ngx-model";
-import { NgxElectronModule } from "ngx-electron";
+// import { NgxElectronModule } from "ngx-electron";
 import { AppConfig } from '../environments/environment';
 import { CheckInternetComponent } from './check-internet/check-internet.component';
 import { GlobalVariables } from './common/core/global-variables';
@@ -62,7 +62,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     CheckInternetComponent,
   ],
   imports: [
-    NgxElectronModule,
+    // NgxElectronModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
