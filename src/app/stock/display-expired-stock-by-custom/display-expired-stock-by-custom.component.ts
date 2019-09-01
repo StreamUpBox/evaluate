@@ -11,7 +11,6 @@ import { Select, Store } from '@ngxs/store';
 import { PosStockExpiredStates } from '../../store/states/PosStockExpiredStates';
 import { StockExpired } from '../expired-stock/api/expired-stock';
 import { LoadStockExpiredEntries } from '../../store/actions/pos-Stock-Expired.action';
-import { StockApiIndexParams } from '../../store/model/pos-stock-expired-state-model';
 import { SelectionModel } from '@angular/cdk/collections';
 import { LocalStorage } from '../../common/core/services/local-storage.service';
 

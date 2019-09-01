@@ -17,9 +17,22 @@
     ],
     "lib": [
       "es2018",
-      "dom"
+      "dom",
+      "es2017",
+      "es2016",
+      "es2015"
     ]
   },
+  "include": [
+    "main.ts",
+    "src/**/*",
+    "win-state-keeper.ts",
+    "test/Spec.js",
+    "wallaby.js"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true

@@ -27,12 +27,12 @@ import { AddItemComponent } from './add-item/add-item.component';
   providers: [UrlAwarePaginator],
   encapsulation: ViewEncapsulation.None,
 })
-export class ItemsComponent implements  OnInit,OnDestroy {
-  @ViewChild(MatSort, {static:true}) matSort: MatSort;
+export class ItemsComponent implements OnInit, OnDestroy {
+  @ViewChild(MatSort, { static: true }) matSort: MatSort;
 
   public dataSource: PaginatedDataTableSource<Item>;
   public loading = new BehaviorSubject(false);
-  constructor(public v: GlobalVariables,public shared:SharedModelService,public paginator: UrlAwarePaginator,private modal: Modal,private router: Router,private detailsService:DetailsService,private api: ApiItemService) {
+  constructor(public v: GlobalVariables, public shared: SharedModelService, public paginator: UrlAwarePaginator, private modal: Modal, private router: Router, private detailsService: DetailsService, private api: ApiItemService) {
   }
 
   ngOnInit() {
@@ -41,66 +41,68 @@ export class ItemsComponent implements  OnInit,OnDestroy {
       uri: 'item',
       dataPaginator: this.paginator,
       matSort: this.matSort
-  });
-   this.viewUpCommingData();
-}
+    });
+    this.viewUpCommingData();
+  }
 
-ngOnDestroy() {
-  this.paginator.destroy();
-}
-  openDetails(title='New Items',action='new',obj){
+  ngOnDestroy() {
+    this.paginator.destroy();
+  }
+  openDetails(title = 'New Items', action = 'new', obj) {
     this.shared.update(obj);
-     this.detailsService.update({title:title,sender_data:obj,module:'app-master',component:'app-items',action:action,detailsVisible:true});
+    this.detailsService.update({ title: title, sender_data: obj, module: 'app-master', component: 'app-items', action: action, detailsVisible: true });
   }
-viewUpCommingData(){
-this.detailsService.details$.subscribe(response=>{
-  if(response.receriver_data){
-    this.paginator.refresh();
-    const g=this.detailsService.get();
-    g.receriver_data=null;
-    this.detailsService.update(g);
-  }
-})
+  viewUpCommingData() {
+    this.detailsService.details$.subscribe(response => {
+      if (response.receriver_data) {
+        this.paginator.refresh();
+        const g = this.detailsService.get();
+        g.receriver_data = null;
+        this.detailsService.update(g);
+      }
+    })
 
-}
- 
+  }
+
   public addItemModal(item?) {
     this.modal.open(
       AddItemComponent,
-        {enabled:true,
-          item:item?item:null},
-          {
-            width: '1200px'
-          }
+      {
+        enabled: true,
+        item: item ? item : null
+      },
+      {
+        width: '1200px'
+      }
     ).beforeClose().subscribe(data => {
-        if ( ! data) return;
-        this.paginator.refresh();
+      if (!data) return;
+      this.paginator.refresh();
     });
-}
-/**
-     * Delete currently selected users.
-     */
-    public deleteSelectedProducts() {
-      const ids = this.dataSource.selectedRows.selected.map(item => item.id);
-      this.loading.next(true);
-      this.api.deleteMultiple(ids).pipe(finalize(() => this.loading.next(false))).subscribe(() => {
-          this.paginator.refresh();
-          this.dataSource.selectedRows.clear();
-      });
   }
- /**
-     * Ask user to confirm deletion of selected tags
-     * and delete selected tags if user confirms.
-     */
-    public maybeDeleteSelectedProducts() {
-      this.modal.show(ConfirmModalComponent, {
-          title: 'Delete Product(s)',
-          body:  'Are you sure you want to delete selected product(s)? the stock related will be deleted too! ',
-          ok:    'Delete'
-      }).afterClosed().subscribe(confirmed => {
-          if ( ! confirmed) return;
-          this.deleteSelectedProducts();
-      });
+  /**
+       * Delete currently selected users.
+       */
+  public deleteSelectedProducts() {
+    const ids = this.dataSource.selectedRows.selected.map(item => item.id);
+    this.loading.next(true);
+    this.api.deleteMultiple(ids).pipe(finalize(() => this.loading.next(false))).subscribe(() => {
+      this.paginator.refresh();
+      this.dataSource.selectedRows.clear();
+    });
+  }
+  /**
+      * Ask user to confirm deletion of selected tags
+      * and delete selected tags if user confirms.
+      */
+  public maybeDeleteSelectedProducts() {
+    this.modal.show(ConfirmModalComponent, {
+      title: 'Delete Product(s)',
+      body: 'Are you sure you want to delete selected product(s)? the stock related will be deleted too! ',
+      ok: 'Delete'
+    }).afterClosed().subscribe(confirmed => {
+      if (!confirmed) return;
+      this.deleteSelectedProducts();
+    });
   }
 }
 

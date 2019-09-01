@@ -14,6 +14,7 @@ import { LocalStorage } from '../../common/core/services/local-storage.service';
 import { InvoicePreviewComponent } from '../invoice-preview/invoice-preview.component';
 import { PrintReceiptModelComponent } from '../../print-out/print-receipt-model/print-receipt-model.component';
 
+
 @Component({
   selector: 'app-invoice',
   templateUrl: './invoice.component.html',

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, EventEmitter, Input, ViewEncapsulation, OnDestroy } from '@angular/core';
-import { Stock, StockMovements } from '../api/stock';
+import { StockMovements } from '../api/stock';
 import { MatSort } from '@angular/material';
 
 import { DetailsService } from '../../details/details.service';
