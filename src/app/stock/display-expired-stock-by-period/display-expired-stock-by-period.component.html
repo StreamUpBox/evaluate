@@ -1,6 +1,6 @@
 <loading-indicator [isVisible]="(loading$ | async)" class="overlay"></loading-indicator>
 
-<div class="table-container" *ngIf="(entries$ | async).length > 0" stockInfiniteScroll>
+<div class="table-container" *ngIf="(entries$ | async) && (entries$ | async).length > 0" stockInfiniteScroll>
 
 <table mat-table [dataSource]="entries$ | async">
 <ng-container matColumnDef="batch_no">
@@ -55,7 +55,7 @@
 </div>
 
 
-<div class="no-results-message" *ngIf="(entries$ | async).length == 0">
+<div class="no-results-message" *ngIf="(entries$ | async) && (entries$ | async).length == 0">
 <div class="text">
   <div class="main">
     Nothing To Display

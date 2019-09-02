@@ -56,23 +56,24 @@ export class Bootstrapper {
     }
     // this.URL.defineAppUrl();
   
-    if (this.settings.getBaseUrl() != "http://localhost:4200/") {
-      url = AppConfig.url + "secure/bootstrap-data";
-    } else {
-      url = this.settings.getBaseUrl() + "secure/bootstrap-data";
-    }
+    // if (this.settings.getBaseUrl() != "http://localhost:4200/") {
+    //   url = AppConfig.url + "secure/bootstrap-data";
+    // } else {
+    
+  //  }
 
     // resolves once request is complete and data is passed to the app
     return new Promise((resolve, reject) => {
+      url = "secure/bootstrap-data";
       this.http.get(url).subscribe(
-        response => {
-          this.handleData(response["data"]);
-          resolve();
-        },
-        error => {
-         // console.log("bootstrap error", error);
-          reject();
-        }
+            response => {
+              this.handleData(response["data"]);
+              resolve();
+            },
+            error => {
+            // console.log("bootstrap error", error);
+              reject();
+            }
       );
     });
   }

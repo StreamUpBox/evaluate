@@ -28,9 +28,8 @@
       <div class="m-3 accordion">
         <div class="m-3">
           <mat-accordion *ngIf="expirationSetting && expirationSetting.length > 0">
-            <mat-expansion-panel class="mt-4" *ngFor="let element of expirationSetting" (opened)="expandingOpened(element)"
-              (closed)="expandingClosed(element)">
-              <mat-expansion-panel-header (click)="expanding()" [style.color]="'#ffff'" [style.background-color]="element.color?element.color:'#1da1f2'">
+            <mat-expansion-panel class="mt-4" *ngFor="let element of expirationSetting" (opened)="expandingOpened(element)">
+              <mat-expansion-panel-header [style.color]="'#ffff'" [style.background-color]="element.color?element.color:'#1da1f2'">
                 <mat-panel-title [style.color]="'#ffff'" >
                   <span class="text" [ngSwitch]="element.period">
                     <label *ngSwitchCase="'tomorrow'">Tomorrow</label>

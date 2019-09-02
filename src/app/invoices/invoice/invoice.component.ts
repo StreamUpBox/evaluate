@@ -13,6 +13,7 @@ import { GlobalVariables } from '../../common/core/global-variables';
 import { LocalStorage } from '../../common/core/services/local-storage.service';
 import { InvoicePreviewComponent } from '../invoice-preview/invoice-preview.component';
 import { PrintReceiptModelComponent } from '../../print-out/print-receipt-model/print-receipt-model.component';
+import { CurrentUser } from '../../common/auth/current-user';
 
 
 @Component({
@@ -27,7 +28,7 @@ export class InvoiceComponent implements OnInit, OnDestroy{
 
   public dataSource: PaginatedDataTableSource<Invoice>;
   public loading = new BehaviorSubject(false);
-  constructor(public v: GlobalVariables,public shared:SharedModelService, public paginator: UrlAwarePaginator,private modal: Modal,private api:InvoiceService,private localStorage: LocalStorage,
+  constructor( public currentUser: CurrentUser,public v: GlobalVariables,public shared:SharedModelService, public paginator: UrlAwarePaginator,private modal: Modal,private api:InvoiceService,private localStorage: LocalStorage,
     public dialog: MatDialog) {
     this.localStorage.set('sales-path', 'invoices');
   }

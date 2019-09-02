@@ -19,9 +19,9 @@ export class Invoice {
   total_discounts?:number;
   taxable_vat?:number;
   total_items?:number;
-  total_amount?:number;
+  total_amount?:any;
   amount_given?:number;
-  amount_return?:number;
+  amount_return?:any;
   branch_id?:number;
   tax_rate_id?:number;
   order_id?:number;

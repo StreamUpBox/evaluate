@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter, Inject } from "@angular/core";
 import { MatDialog } from "@angular/material";
 import { Router, ActivatedRoute } from "@angular/router";
 import {
@@ -14,7 +14,8 @@ import { Bootstrapper } from "../../../core/bootstrapper.service";
 import { Settings } from "../../../core/config/settings.service";
 
 import { GlobalVariables } from "../../global-variables";
-// import { ElectronService } from 'ngx-electron';
+import { ElectronService } from '../../../core/config/electron.service';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: "app-password-verify",
@@ -45,13 +46,13 @@ export class PasswordVerifyComponent implements OnInit {
     public dialog: MatDialog,
     private router: Router,
     private auth: AuthService,
-    // private _electronService: ElectronService
+    public electronService: ElectronService,
+    @Inject(DOCUMENT) private document: Document,
   ) {
     this.v.loading = false;
-    if (this.isElectron()) {
-      // this.ipcRenderer = this._electronService.ipcRenderer;
-      this.ipcRenderer.send("version-ping", "ping");
-      this.ipcRenderer.on("version-pong", (event, version) => {
+    if (this.electronService.isElectron) {
+      this.electronService.ipcRenderer.send("version-ping", "ping");
+      this.electronService.ipcRenderer.on("version-pong", (event, version) => {
         this.v.webTitle("Sign in" + "- version:" + version);
       });
     } else {
@@ -118,8 +119,10 @@ export class PasswordVerifyComponent implements OnInit {
     return window && window.process && window.process.type;
   };
   public openForgetPassword() {
-    if (this.isElectron()) {
-      // this._electronService.shell.openExternal("https://yegobox.com/login");
+    if (this.electronService.isElectron) {
+       this.electronService.shell.openExternal("https://yegobox.com/login");
+    }else{
+      this.document.location.href="https://yegobox.com/login";
     }
   }
 }

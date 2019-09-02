@@ -110,8 +110,7 @@ loadCustomer(){
         total += this.data[i][prop]
       }
     }
-    const s=total.toString();
-    return  parseFloat(s).toFixed(2);
+    return total?total:0.00;
 
   }
   keysClicked(key) {

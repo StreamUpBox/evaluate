@@ -1,9 +1,10 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component, ViewEncapsulation, Inject} from '@angular/core';
 import {AuthService} from '../../../auth/auth.service';
 import {CurrentUser} from '../../../auth/current-user';
 import { Router } from '@angular/router';
-// import { ElectronService } from 'ngx-electron';
 import { Bootstrapper } from '../../bootstrapper.service';
+import { DOCUMENT } from '@angular/common';
+import { ElectronService } from '../../config/electron.service';
 
 @Component({
     selector: 'logged-in-user-widget',
@@ -15,18 +16,12 @@ export class LoggedInUserWidgetComponent  {
   loading:boolean=false;
   ipcRenderer: any;
     constructor(private bootstrapper: Bootstrapper,
-      // private _electronService: ElectronService,
+      public electronService: ElectronService,
+       @Inject(DOCUMENT) private document: Document,
       private router: Router, public currentUser: CurrentUser, public auth: AuthService) {
-      if (this.isElectron()) {
-        // this.ipcRenderer = this._electronService.ipcRenderer;
-        this.ipcRenderer.send("version-ping", "ping");
-        this.ipcRenderer.on("version-pong", (event, version) => {
-          //this.v.webTitle("Sign in - eNexus Accounts Setting" + "v" + version);
-        });
-      } else {
-       // this.v.webTitle("Sign in - eNexus Accounts Setting");
+       
       }
-    }
+    
 
     logOut(){
     this.loading=true;
@@ -34,7 +29,6 @@ export class LoggedInUserWidgetComponent  {
       response =>  {
       this.loading=false;
       this.currentUser.clear();
-      //console.log(response.data);
       this.bootstrapper.bootstrap(response.data);
       this.router.navigate(["/login"]);
     });
@@ -43,8 +37,10 @@ export class LoggedInUserWidgetComponent  {
     return window && window.process && window.process.type;
   };
   public openAccountSettings() {
-    if (this.isElectron()) {
-      // this._electronService.shell.openExternal("https://yegobox.com/account/settings");
+    if (this.electronService.isElectron) {
+       this.electronService.shell.openExternal("https://yegobox.com/account/settings");
+    }else{
+      this.document.location.href="https://yegobox.com/account/settings";
     }
   }
 }

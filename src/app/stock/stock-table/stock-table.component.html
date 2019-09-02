@@ -66,17 +66,17 @@
     <mat-cell *matCellDef="let stock" (click)="openOperationBtn(stock)">
         <mat-progress-bar
         *ngIf="percentage(stock.available_stock_qty,stock.in_stock_qty)
-        >= 71" [mode]="determinate" [color]="accent"
+        >= 71" [mode]="mode" [color]="accent"
         [value]="percentage(stock.available_stock_qty,stock.in_stock_qty)"></mat-progress-bar>
       <mat-progress-bar
         *ngIf="percentage(stock.available_stock_qty,stock.in_stock_qty)
       <= 70 && percentage(stock.available_stock_qty,stock.in_stock_qty)
-        >= 41" [mode]="determinate" [color]="primary"
+        >= 41" [mode]="mode" [color]="primary"
         [value]="percentage(stock.available_stock_qty,stock.in_stock_qty)"></mat-progress-bar>
       <mat-progress-bar
         *ngIf="percentage(stock.available_stock_qty,stock.in_stock_qty)
       <= 40 && percentage(stock.available_stock_qty,stock.in_stock_qty)
-        >= 0"[mode]="determinate" [color]="warn"
+        >= 0"[mode]="mode" [color]="warn"
         [value]="percentage(stock.available_stock_qty,stock.in_stock_qty)"></mat-progress-bar>
         &nbsp; &nbsp;
       {{percentage(stock.available_stock_qty,stock.in_stock_qty)}} %

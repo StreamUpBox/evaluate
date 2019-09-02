@@ -40,7 +40,7 @@
               <div *ngIf="is_categry_clicked  && currently_stocks.length > 0">
                 <div class="row m-3" style="margin-right: 0.75rem; margin-bottom: 0.75rem;">
                   <mat-card *ngFor="let stock of currently_stocks" class="col-sm-6 col-md-2 col-lg-2 col-xs-6 m-1 ellipsis"
-                    (click)=" addItemToCart(stock)" matTooltip="{{stock.name}}"
+                   matTooltip="{{stock.name}}"
                     [matTooltipPosition]="'left'"
                     aria-label="stock.name"   matRipple
                     [matRippleCentered]="centered"

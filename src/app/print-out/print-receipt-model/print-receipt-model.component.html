@@ -5,7 +5,7 @@
 	  </button>
 	</div>
 	<mat-card-content class="receipt-dialog-content" *ngIf="invoice">
-	<div *ngIf="!invoice.amount_return==0.00 || 0 || '0.00' || '0'" style="font-size:24px">
+	<div *ngIf="(invoice.amount_return!=0.00 || invoice.amount_return!= 0 || invoice.amount_return!='0.00' || invoice.amount_return!='0')" style="font-size:24px">
 		Balance Due: <span class="text-info">{{current.getBusiness('currency_code') }} {{invoice.amount_return}}</span>
 		 <mat-divider></mat-divider>
 	</div>

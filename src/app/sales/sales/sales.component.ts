@@ -24,7 +24,7 @@ export class SalesComponent implements OnInit {
   toggled=false;
   isMobile=false;
   leftColumnIsHidden=false;
-  constructor(private localStorage: LocalStorage,public v: GlobalVariables) {
+  constructor(public localStorage: LocalStorage,public v: GlobalVariables) {
         this.localStorage.set('sales-path', 'invoices');
   }
 

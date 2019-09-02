@@ -31,7 +31,7 @@ public loading = new BehaviorSubject(false);
 @Select(PosStockExpiredStates.loading) loading$: Observable<boolean>;
 @Select(PosStockExpiredStates.meta) meta$: Observable<any>;
 @Select(PosStockExpiredStates.entriesEmpty) entriesEmpty$: Observable<boolean>;
-@Select(PosStockExpiredStates.entries) entries$: Observable<StockExpired>;
+@Select(PosStockExpiredStates.entries) entries$: Observable<StockExpired[]>;
 
 displayedColumns = ['batch_no','sku','item', 'in_qty', 'out_qty','total_qty','expired_date','manufacture_date'];
 

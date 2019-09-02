@@ -20,7 +20,7 @@
   <ng-container matColumnDef="selected" *ngIf="enableSelectButton">
     <mat-header-cell *matHeaderCellDef></mat-header-cell>
     <mat-cell *matCellDef="let branch">
-        <button (click)="selectbranch(branch)" class="button-success" *ngIf="branch.id!=selectedId" [disabled]="branch.id==selectedId?true:false"  [matTooltip]="'Select branch' | trans">Select
+        <button (click)="selectBranch(branch)" class="button-success" *ngIf="branch.id!=selectedId" [disabled]="branch.id==selectedId?true:false"  [matTooltip]="'Select branch' | trans">Select
         </button>
         <button  class="button-cancel" *ngIf="branch.id==selectedId"  [matTooltip]="'Selected branch' | trans">Selected
         </button>

@@ -1,8 +1,10 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter, Inject } from "@angular/core";
 import { FormControl, Validators, FormGroup } from "@angular/forms";
 import { GlobalVariables } from "../../../core/global-variables";
 import { AuthService } from "../../auth.service";
 import { Settings } from "../../../core/config/settings.service";
+import { ElectronService } from '../../../core/config/electron.service';
+import { DOCUMENT } from '@angular/common';
 
 // import { ElectronService } from "ngx-electron";
 @Component({
@@ -22,14 +24,14 @@ export class EmailVerifyComponent {
     public settings: Settings,
     private auth: AuthService,
     public v: GlobalVariables,
-    // private _electronService: ElectronService
+    public electronService: ElectronService,
+    @Inject(DOCUMENT) private document: Document,
   ) {
     this.emailForm = new FormGroup({
       email: new FormControl("", [Validators.required, Validators.email])
     });
     this.v.loading = false;
-    if (this.isElectron()) {
-      // this.ipcRenderer = this._electronService.ipcRenderer;
+    if (this.electronService.isElectron) {
       this.ipcRenderer.send("version-ping", "ping");
       this.ipcRenderer.on("version-pong", (event, version) => {
         this.v.webTitle("Sign in - eNexus Accounts" + "v" + version);
@@ -38,12 +40,8 @@ export class EmailVerifyComponent {
       this.v.webTitle("Sign in - eNexus Accounts");
     }
   }
-  isElectron = () => {
-    return window && window.process && window.process.type;
-  };
-  gotoWebRegister() {
-    // this._electronService.shell.openExternal("https://yegobox.rw/register");
-  }
+ 
+
 
   get email() {
     return this.emailForm.get("email");
@@ -78,7 +76,6 @@ export class EmailVerifyComponent {
           }
         },
         _error => {
-         // console.log(_error);
           this.v.loading = false;
           this.v.errorMsg = _error.messages.email;
         }
@@ -86,8 +83,10 @@ export class EmailVerifyComponent {
     }
   }
   public openRegister() {
-    if (this.isElectron()) {
-      // this._electronService.shell.openExternal("https://yegobox.com/register");
+    if (this.electronService.isElectron) {
+       this.electronService.shell.openExternal("https://yegobox.com/register");
+    } else{
+      this.document.location.href="https://yegobox.com/register";
     }
   }
 }

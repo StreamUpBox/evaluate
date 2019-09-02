@@ -42,21 +42,21 @@
 </ng-container>
 <ng-container matColumnDef="total_amount">
 <mat-header-cell *matHeaderCellDef mat-sort-header>Total Amount</mat-header-cell>
-<mat-cell *matCellDef="let invoice">{{currency_code}} {{invoice.total_amount}}</mat-cell>
+<mat-cell *matCellDef="let invoice">{{currentUser.getBusiness('currency_code')}} {{invoice.total_amount}}</mat-cell>
 </ng-container>
 
 <ng-container matColumnDef="total_discounts">
 <mat-header-cell *matHeaderCellDef mat-sort-header>Total Discount</mat-header-cell>
-<mat-cell *matCellDef="let invoice">{{currency_code}} {{invoice.total_discounts}}</mat-cell>
+<mat-cell *matCellDef="let invoice">{{currentUser.getBusiness('currency_code')}} {{invoice.total_discounts}}</mat-cell>
 </ng-container>
 
 <ng-container matColumnDef="amount_given">
 <mat-header-cell *matHeaderCellDef mat-sort-header>Amount Paid</mat-header-cell>
-<mat-cell *matCellDef="let invoice">{{currency_code}} {{invoice.amount_given}}</mat-cell>
+<mat-cell *matCellDef="let invoice">{{currentUser.getBusiness('currency_code')}} {{invoice.amount_given}}</mat-cell>
 </ng-container>
 <ng-container matColumnDef="amount_return">
 <mat-header-cell *matHeaderCellDef mat-sort-header>Change Due</mat-header-cell>
-<mat-cell *matCellDef="let invoice">{{currency_code}} {{invoice.amount_return}}</mat-cell>
+<mat-cell *matCellDef="let invoice">{{currentUser.getBusiness('currency_code')}} {{invoice.amount_return}}</mat-cell>
 </ng-container>
 
 <ng-container matColumnDef="payment_method">

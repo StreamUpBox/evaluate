@@ -1,18 +1,21 @@
 import { Injectable, Input, ViewChild, ElementRef } from "@angular/core";
 import { Observable, BehaviorSubject } from "rxjs";
 import { LocalStorage } from './services/local-storage.service';
-import { Titlebar, Color } from 'custom-electron-titlebar';
+
 import { Router } from '@angular/router';
+import { AppConfig } from '../../../environments/environment';
+import { ElectronService } from './config/electron.service';
 @Injectable({ providedIn: "root" })
 export class GlobalVariables {
+
   titlebar:any=null;
-  constructor(public localStorage: LocalStorage,public router: Router) {
-     this.titlebar=new Titlebar({
-      backgroundColor: Color.WHITE,
-      icon: './assets/logo/icon.ico',
-      shadow: false
-  });
+  constructor( public electronService: ElectronService,public localStorage: LocalStorage,public router: Router) {
+    if (this.electronService.isElectron) {
+          this.titlebar = this.electronService.viewTitleBar();
+       }
    }
+
+  
    checkInternet(){
     if(!this.isInternetConnection()){
         this.router.navigate(["no-internet"]);
@@ -464,8 +467,11 @@ export class GlobalVariables {
   }
 
   webTitle(title = "Flipper") {
-
-    this.titlebar.updateTitle(title + ' - Flipper');
+    if (this.electronService.isElectron) {
+        this.titlebar.updateTitle(title + ' - Flipper');
+    }else{
+      document.title = title;
+    }
     return this.localStorage.set('flipper-title',title);
 
   }

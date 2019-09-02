@@ -28,7 +28,7 @@ public dataSource=new MatTableDataSource<StockExpired>([]);
 public loading = new BehaviorSubject(false);
 searchForm: FormGroup;
 @Select(PosStockExpiredStates.loading) loading$: Observable<boolean>;
-@Select(PosStockExpiredStates.entries) entries$: Observable<StockExpired>;
+@Select(PosStockExpiredStates.entries) entries$: Observable<StockExpired[]>;
 @Select(PosStockExpiredStates.meta) meta$: Observable<any>;
 @Select(PosStockExpiredStates.entriesEmpty) entriesEmpty$: Observable<boolean>;
 

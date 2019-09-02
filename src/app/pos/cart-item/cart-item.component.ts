@@ -103,7 +103,12 @@ export class CartItemComponent implements OnInit, OnDestroy {
   @Select(PosOrderState.loading) loading$: Observable<boolean>;
 
 @Select(PosOrderState.customerOrder) customer$: Observable<Customer>;
-  
+centered = true;
+disabled = false;
+unbounded = false;
+radius: number=50;
+color: string='green';
+
   constructor(
     private localStorage: LocalStorage,
     private store:Store,

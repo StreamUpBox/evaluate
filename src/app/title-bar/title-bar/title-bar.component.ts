@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { LocalStorage } from '../../common/core/services/local-storage.service';
-const {BrowserWindow} = require('electron').remote;
 @Component({
   selector: 'title-bar',
   templateUrl: './title-bar.component.html',
@@ -14,21 +13,12 @@ export class TitleBarComponent implements OnInit {
    
   }
 
-  onWinMin(){
-    var window = BrowserWindow.getFocusedWindow();
-           return window.minimize();  
+  onWinMin(){ 
 }
 onWinMax(){
-    var window = BrowserWindow.getFocusedWindow();
-    if(window.isMaximized()){
-        window.unmaximize();
-    }else{
-        window.maximize();
-    } 
+   
 }
 onWinClose(){
-    var window = BrowserWindow.getFocusedWindow();
-    window.close();
 }
  
 
